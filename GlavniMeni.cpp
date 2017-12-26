@@ -5,9 +5,11 @@
 
 void glavniMeni()
 {
+	int  brojPokusaja = 5;
 	int tipNaloga;
 	do
 	{
+		
 		Nalog nalog;
 		std::cout << "Unesite ime naloga: " << std::endl;
 		std::cin >> nalog.imeNaloga;
@@ -15,10 +17,13 @@ void glavniMeni()
 		std::cin >> nalog.pinNaloga;
 
 		tipNaloga = imalNaloga(nalog.imeNaloga, nalog.pinNaloga);
+		brojPokusaja--;
 		if (tipNaloga == 0)
-			std::cout << "Neuspjesna prijava" << std::endl << std::endl;
-
-	} while (tipNaloga == 0);
+		{
+			std::cout << "Neuspjesna prijava"  << std::endl;
+			std::cout << "Broj preostalih pokusaja: "<< brojPokusaja << std::endl << std::endl;
+		}
+	} while (tipNaloga == 0 && brojPokusaja > 0);
 	switch (tipNaloga)
 	{
 	case 1:
