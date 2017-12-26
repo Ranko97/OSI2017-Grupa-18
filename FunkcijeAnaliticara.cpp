@@ -43,6 +43,7 @@ void ispisi_artikal(char* buffer) {
 	std::cout << "  ";
 	while (buffer[i] != '\0') {
 		std::cout << buffer[i];
+		i++;
 }
 	std::cout <<std::endl;
 
@@ -68,8 +69,8 @@ void ispisi_racun(std::string nazivRacuna) {
 	std::cout << "Ukupna cijena sa PDVom: " << buffer << std::endl;
 	std::cout << "Proizvod    -  kolicina  -  cijena  -  ukupno " << std::endl;
 	while (fajl.getline(buffer, 100)) {
-		//ispisi_artikal(buffer);
-		std::cout << buffer << std::endl;
+		ispisi_artikal(buffer);
+		
 	}
 	std::cout << std::endl;
 	fajl.close();
