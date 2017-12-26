@@ -128,7 +128,6 @@ void obradi_racun2(std::string stari_naziv, std::string novi_naziv) {
 	}
 
 }
-// OVO STO TREBA POPRAVITI JE DOLE U KOMENTARU
 
 void obradi_racun4(std::string stari_naziv, std::string novi_naziv) {
 
@@ -168,7 +167,7 @@ for (int j = 0; j < 7; j++)
 racun.getline(buffer, 100);
 
 char* pom;
-for (int j = 9; j < i - 6; j++) {
+for (int j = 8; j < i - 6; j++) {
 racun.getline(buffer, 100);
 pom = formatiraj124(buffer);
 obradjeni_racun << pom << '\n';
