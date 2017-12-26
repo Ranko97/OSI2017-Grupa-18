@@ -40,6 +40,7 @@ int tip_racuna(const char* naziv) {
 	string puniNaziv = direktorijum;
 	puniNaziv += naziv;
 	ifstream fajl(puniNaziv.c_str());
+	//cout <<endl<<"naziv: "<< puniNaziv.c_str() << endl;
 	if (!fajl.is_open()) {
 		std::cout << "Greska pri otvaranju fajla" << std::endl;
 		return -2;
@@ -49,7 +50,7 @@ int tip_racuna(const char* naziv) {
 	fajl.getline(buffer, 100);
 	fajl.getline(buffer, 100);
 	fajl >> buffer;
-		if (buffer[0] == 'R') {
+	if (buffer[0] == 'R') {
 		fajl.close();
 		return 1;
 	}
@@ -65,11 +66,11 @@ int tip_racuna(const char* naziv) {
 		fajl.close();
 		return 4;
 	}
-	
-		std::cout << "Neispravan format racuna!" << std::endl;
-		fajl.close();
-		return -1;
-	
+
+	std::cout << "Neispravan format racuna!" << std::endl;
+	fajl.close();
+	return -1;
+
 }
 
 
@@ -77,7 +78,7 @@ void obradi_racun(const char* naziv) {
 	/*
 	NAPOMENA: Komentari se odnose za dio koda iznad njih!
 	*/
-	
+
 	int tipNovogRacuna = tip_racuna(naziv);
 	if (tipNovogRacuna == -1) {
 		std::cout << "GRESKA! Pogresan tip(format) racuna)" << std::endl;
@@ -86,10 +87,10 @@ void obradi_racun(const char* naziv) {
 		*/
 		return;
 	}
-	if (tipNovogRacuna == 3 || tipNovogRacuna == 4) {
+	/*if (tipNovogRacuna == 3 || tipNovogRacuna == 4) {
 		cout << "Jos uvijek ne podrzavamo taj format!" << endl;
 		return;
-	}
+	}*/
 	std::fstream brfajl("obradjeni racuni/broj racuna.txt", ios::in);
 	if (!brfajl.is_open()) {
 		std::cout << "Greska pri otvaranju fajla koji sadrzi broj fajlova!" << std::endl;
@@ -99,27 +100,28 @@ void obradi_racun(const char* naziv) {
 	brfajl.getline(buffer, 100);
 	int ukupan_broj_racuna = strtol(buffer, NULL, 10);
 	ukupan_broj_racuna++;
+	cout << endl << ukupan_broj_racuna << endl;
 	brfajl.close();
 	brfajl.open("obradjeni racuni/broj racuna.txt", ios::out);
-	brfajl << ukupan_broj_racuna<<"\n";
+	brfajl << ukupan_broj_racuna << "\n";
 
 	/*
 	Otvaramo fajl "broj racuna" koji se nalazi u folderu "obradjeni racuni"
 	i iz njega citamo trenutni broj racuna, uvecavamo ga za jedan i pisemo ga u isti fajl.
-	*/ 
-	
+	*/
+
 	std::string nazivBrojRacuna = std::to_string(ukupan_broj_racuna);
 	std::string direktorijum = "obradjeni racuni/";
 	std::string ekstenzija = ".txt";
 	std::string puniNaziv = direktorijum;
 	puniNaziv += nazivBrojRacuna;
 	puniNaziv += ekstenzija;
-	
+
 	/*
 	Kreiramo i otvaramo novi racun u folderu obradjeni racuni
 	u koji cemo upisati racun iz foldera racuni.
 	*/
-	
+
 	std::string direktorijum2 = "racuni/";
 	std::string puniNaziv2 = direktorijum2;
 	puniNaziv2 += naziv;
@@ -131,13 +133,13 @@ void obradi_racun(const char* naziv) {
 		obradi_racun2(puniNaziv2, puniNaziv);
 		break;
 	case 3:
-		//obradi_racun3(puniNaziv2, puniNaziv);
+		obradi_racun3(puniNaziv2, puniNaziv);
 		break;
 	case 4:
-		//obradi_racun4(puniNaziv2, puniNaziv);
+		obradi_racun4(puniNaziv2, puniNaziv);
 		break;
 	}
-	//remove(puniNaziv2.c_str());
+	remove(puniNaziv2.c_str());
 }
 
 void ucitavanje_racuna() {
