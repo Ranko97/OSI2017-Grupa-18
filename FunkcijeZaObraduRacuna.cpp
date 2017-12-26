@@ -42,7 +42,6 @@ void obradi_racun1(std::string puniNaziv2, std::string puniNaziv) {
 	neobradjeniRacun.close();
 	neobradjeniRacun.open(puniNaziv2.c_str());
 	i = i + 2;
-	std::cout << i << std::endl;
 	/*
 	Odredimo ukupan broj linija racuna koji se obradjuje
 	*/
