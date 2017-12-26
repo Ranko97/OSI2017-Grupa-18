@@ -1,8 +1,10 @@
 #include "MeniZaAnaliticara.h"
+#include "UcitavanjeRacuna.h"
 #include <string>
 #include <iostream>
 
 void meniZaAnaliticara(){
+	ucitavanje_racuna();
 	int opcija = 1;
 	char buffer[100];
 	std::string kupac;
@@ -19,7 +21,7 @@ while (opcija)
 	{
 	case 1:
 		std::cout << std::endl << "Unesi naziv kupca po kom hocete da filtrirate: ";
-		std::cin.getline(kupac);
+		std::cin >> kupac;
 		std::cout << std::endl;
 		filtrirajPoKupcu(kupac);
 		break;
@@ -34,5 +36,6 @@ while (opcija)
 
 
 }
+
 
 }

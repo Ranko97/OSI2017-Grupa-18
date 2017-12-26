@@ -40,7 +40,6 @@ int tip_racuna(const char* naziv) {
 	string puniNaziv = direktorijum;
 	puniNaziv += naziv;
 	ifstream fajl(puniNaziv.c_str());
-	//cout <<endl<<"naziv: "<< puniNaziv.c_str() << endl;
 	if (!fajl.is_open()) {
 		std::cout << "Greska pri otvaranju fajla" << std::endl;
 		return -2;
@@ -100,7 +99,6 @@ void obradi_racun(const char* naziv) {
 	brfajl.getline(buffer, 100);
 	int ukupan_broj_racuna = strtol(buffer, NULL, 10);
 	ukupan_broj_racuna++;
-	cout << endl << ukupan_broj_racuna << endl;
 	brfajl.close();
 	brfajl.open("obradjeni racuni/broj racuna.txt", ios::out);
 	brfajl << ukupan_broj_racuna<<"\n";

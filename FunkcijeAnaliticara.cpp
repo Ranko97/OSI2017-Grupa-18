@@ -68,20 +68,21 @@ void ispisi_racun(std::string nazivRacuna) {
 	std::cout << "Ukupna cijena sa PDVom: " << buffer << std::endl;
 	std::cout << "Proizvod    -  kolicina  -  cijena  -  ukupno " << std::endl;
 	while (fajl.getline(buffer, 100)) {
-		ispisi_artikal(buffer);
+		//ispisi_artikal(buffer);
+		std::cout << buffer << std::endl;
 	}
 	std::cout << std::endl;
 	fajl.close();
 	}
 
-bool provjeriKupca(std::string nazivRacuna, std::string Kupac) {
+bool provjeriKupca(std::string nazivRacuna, std::string kupac) {
 	std::ifstream racun(nazivRacuna.c_str());
 	if (!racun.is_open()) {
-		std::cout << std::end << "Greska pri otvaranju racuna kod provjere kupca! " << std::end;
+		std::cout << std::endl << "Greska pri otvaranju racuna kod provjere kupca! " << std::endl;
 		return false;
 	}
 	std::string firstLine;
-	racun.getline(firstLine);
+	std::getline(racun, firstLine);
 	racun.close();
 	if (firstLine == kupac)
 		return true;
@@ -93,7 +94,7 @@ bool provjeriKupca(std::string nazivRacuna, std::string Kupac) {
 void filtrirajPoKupcu(std::string kupac) {
 	std::ifstream brrac("obradjeni racuni/broj racuna.txt");
 	if (!brrac.is_open()) {
-		std::cout << std::endl; << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
+		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
 		return;
 	}
 	char buffer[50];
@@ -103,12 +104,16 @@ void filtrirajPoKupcu(std::string kupac) {
 	std::string ekstenzija = ".txt";
 	std::string nazivBrojRacuna;
 	std::string puniNaziv;
+	int brojac = 0;
 	for (int j = 1; j <= ukupan_broj_racuna; j++) {
 		puniNaziv = direktorijum+std::to_string(j)+ekstenzija;
-		if (provjeriKupca(puniNaziv, kupac))
+		if (provjeriKupca(puniNaziv, kupac)) {
 			ispisi_racun(puniNaziv);
-			
+			brojac++;
+		}
 		
 	}
+	if (brojac == 0)
+		std::cout << std::endl << "Nema racuna sa tim kupcem! " << std::endl;
 
 }
