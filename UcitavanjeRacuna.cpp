@@ -87,7 +87,14 @@ void obradi_racun(const char* naziv) {
 		*/
 		return;
 	}
+<<<<<<< HEAD
 
+=======
+	/*if (tipNovogRacuna == 3 || tipNovogRacuna == 4) {
+		cout << "Jos uvijek ne podrzavamo taj format!" << endl;
+		return;
+	}*/
+>>>>>>> dd864f9e22cf9413033fbb7c10c7d4b109e92c15
 	std::fstream brfajl("obradjeni racuni/broj racuna.txt", ios::in);
 	if (!brfajl.is_open()) {
 		std::cout << "Greska pri otvaranju fajla koji sadrzi broj fajlova!" << std::endl;
@@ -97,6 +104,7 @@ void obradi_racun(const char* naziv) {
 	brfajl.getline(buffer, 100);
 	int ukupan_broj_racuna = strtol(buffer, NULL, 10);
 	ukupan_broj_racuna++;
+	cout << endl << ukupan_broj_racuna << endl;
 	brfajl.close();
 	brfajl.open("obradjeni racuni/broj racuna.txt", ios::out);
 	brfajl << ukupan_broj_racuna << "\n";
