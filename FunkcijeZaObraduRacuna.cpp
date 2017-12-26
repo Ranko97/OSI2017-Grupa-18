@@ -28,7 +28,7 @@ void obradi_racun1(std::string puniNaziv2, std::string puniNaziv) {
 	std::ofstream racunPoslijeObrade(puniNaziv.c_str());
 	char buffer[100];
 	neobradjeniRacun.get(buffer, 8);
-	neobradjeniRacun.getline(buffer,100);
+	neobradjeniRacun.getline(buffer, 100);
 	racunPoslijeObrade << buffer << "\n";
 	neobradjeniRacun.get(buffer, 8);
 	neobradjeniRacun.getline(buffer, 100);
@@ -76,7 +76,7 @@ void obradi_racun1(std::string puniNaziv2, std::string puniNaziv) {
 		pom = formatiraj124(buffer);
 		racunPoslijeObrade << pom << "\n";
 		delete[] pom;
-		
+
 	}
 }
 
@@ -127,119 +127,113 @@ void obradi_racun2(std::string stari_naziv, std::string novi_naziv) {
 	}
 
 }
-// OVO STO TREBA POPRAVITI JE DOLE U KOMENTARU
 
-/*void obradi_racun4(std::string stari_naziv, std::string novi_naziv) {
+void obradi_racun4(std::string stari_naziv, std::string novi_naziv) {
 
 
-	std::ifstream racun(stari_naziv.c_str());
-	std::ofstream obradjeni_racun(novi_naziv.c_str());
-	char buffer[100];
+std::ifstream racun(stari_naziv.c_str());
+std::ofstream obradjeni_racun(novi_naziv.c_str());
+char buffer[100];
 
-	racun.get(buffer, 8);
-	racun.getline(buffer, 100);
-	obradjeni_racun << buffer << '\n';
-	racun.get(buffer, 8);
-	racun.getline(buffer, 100);
-	obradjeni_racun << buffer << '\n';
+racun.get(buffer, 8);
+racun.getline(buffer, 100);
+obradjeni_racun << buffer << '\n';
+racun.get(buffer, 8);
+racun.getline(buffer, 100);
+obradjeni_racun << buffer << '\n';
 
-	int i = 0;
-	while (racun.getline(buffer, 100))
-		i++;
-	i = i + 2;
-	racun.close();
-	racun.open(stari_naziv.c_str());
-	for (int j = 0; j < i - 6; j++)
-		racun.getline(buffer, 100);
-	racun.get(buffer, 9);
-	racun.getline(buffer, 100);
-	obradjeni_racun << buffer << '\n';
-	racun.get(buffer, 5);
-	racun.getline(buffer, 100);
-	obradjeni_racun << buffer << '\n';
-	racun.getline(buffer, 100);
-	racun.get(buffer, 21);
-	racun.getline(buffer, 100);
-	obradjeni_racun << buffer << '\n';
-	racun.close();
-	racun.open(stari_naziv.c_str());
-	for (int j = 0; j < 7; j++)
-		racun.getline(buffer, 100);
+int i = 0;
+while (racun.getline(buffer, 100))
+i++;
+i = i + 2;
+racun.close();
+racun.open(stari_naziv.c_str());
+for (int j = 0; j < i - 6; j++)
+racun.getline(buffer, 100);
+racun.get(buffer, 9);
+racun.getline(buffer, 100);
+obradjeni_racun << buffer << '\n';
+racun.get(buffer, 6);
+racun.getline(buffer, 100);
+obradjeni_racun << buffer << '\n';
+racun.getline(buffer, 100);
+racun.get(buffer, 21);
+racun.getline(buffer, 100);
+obradjeni_racun << buffer << '\n';
+racun.close();
+racun.open(stari_naziv.c_str());
+for (int j = 0; j < 7; j++)
+racun.getline(buffer, 100);
 
-	char* pom;
-	for (int j = 9; j < i - 6; j++) {
-		racun.getline(buffer, 100);
-		pom = formatiraj124(buffer);
-		obradjeni_racun << pom << '\n';
-		delete[] pom;
-	}
+char* pom;
+for (int j = 8; j < i - 6; j++) {
+racun.getline(buffer, 100);
+pom = formatiraj124(buffer);
+obradjeni_racun << pom << '\n';
+delete[] pom;
 }
-*/
-
-/*void obradi_racun3(std::string stari_naziv, std::string novi_naziv) {
-	std::ifstream racun(stari_naziv.c_str());
-	std::ofstream obradjeni_racun(novi_naziv.c_str());
-	char buffer[100];
-	for (int i = 0; i < 2; i++)
-		racun.getline(buffer, 100);
-	racun.get(buffer, 8);
-	racun.getline(buffer, 100);
-	obradjeni_racun << buffer << "\n";
-	int i = 0;
-	racun.get(buffer, 8);
-	racun.getline(buffer, 100);
-	obradjeni_racun << buffer << "\n";
-
-	while (racun.getline(buffer, 100))
-		i++;
-	i = i + 4;
-
-	racun.close();
-	racun.open(stari_naziv.c_str());
-	for (int j = 0; j < i - 3; j++)
-		racun.getline(buffer, 100);
-	racun.get(buffer, 9);
-	int j = 0;
-	char c;
-	racun.get(&c, 2);
-	while (c != ' ') {
-		buffer[j] = c;
-		racun.get(&c, 2);
-		j++;
-	}
-	buffer[j] = '\0';
-	obradjeni_racun << buffer << "\n";
-	racun.get(&c, 2);
-	while (c == ' ')
-		racun.get(&c, 2);
-	racun.get(buffer, 5);
-
-	racun.getline(buffer, 100);
-	obradjeni_racun << buffer << '\n';
-	racun.getline(buffer, 100);
-	racun.get(buffer, 21);
-	racun.getline(buffer, 100);
-	obradjeni_racun << buffer << '\n';
-
-	racun.close();
-	racun.open(stari_naziv.c_str());
-
-	for (int j = 0; j < 9; j++)
-		racun.getline(buffer, 100);
-	char pom[100];
-	int l, k = 0;
-	for (int j = 9; j < i - 5; j++) {
-		racun.getline(pom, 100);
-		l = 0;
-		while (pom[l] != '\0') {
-			if (pom[l] != '=')
-				if (pom[l - 1] == '=')buffer[k++] = '-';
-			buffer[k++] = pom[l];
-			l++;
-		}
-		buffer[k] = '\0';
-		obradjeni_racun << buffer << '\n';
-
-	}
 }
-*/
+
+
+void obradi_racun3(std::string stari_naziv, std::string novi_naziv) {
+std::ifstream racun(stari_naziv.c_str());
+std::ofstream obradjeni_racun(novi_naziv.c_str());
+char buffer[100];
+for (int i = 0; i < 2; i++)
+racun.getline(buffer, 100);
+racun.get(buffer, 8);
+racun.getline(buffer, 100);
+obradjeni_racun << buffer << "\n";
+int i = 0;
+racun.get(buffer, 8);
+racun.getline(buffer, 100);
+obradjeni_racun << buffer << "\n";
+
+while (racun.getline(buffer, 100))
+i++;
+i = i + 4;
+
+racun.close();
+racun.open(stari_naziv.c_str());
+for (int j = 0; j < i - 3; j++)
+racun.getline(buffer, 100);
+racun >> buffer;
+racun >> buffer;
+obradjeni_racun << buffer<<'\n';
+racun >> buffer;
+racun >> buffer;
+obradjeni_racun << buffer<<'\n';
+racun >> buffer;
+racun >> buffer;
+racun >> buffer;
+racun >> buffer;
+obradjeni_racun << buffer << '\n';
+
+
+racun.close();
+racun.open(stari_naziv.c_str());
+
+for (int j = 0; j < 9; j++)
+racun.getline(buffer, 100);
+char pom[100];
+int l, k = 0;
+for (int j = 9; j < i - 5; j++) {
+	//obradjeni_racun << "ala";
+	racun.getline(pom, 100);
+	//obradjeni_racun << pom<<'\n';
+l = 0;
+	//obradjeni_racun << "druze";
+k = 0;
+while (pom[l] != '\0') {
+	if (pom[l] != '=') {
+		if (pom[l - 1] == '=')buffer[k++] = '-';
+		buffer[k++] = pom[l];
+	}
+l++;
+}
+buffer[k] = '\0';
+	//obradjeni_racun << "je";
+obradjeni_racun << buffer << '\n';
+
+}
+}
