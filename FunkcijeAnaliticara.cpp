@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "FunkcijeAdministratora.h"
 
 void ispisi_artikal(char* buffer) {
 	int brojac = 0;
@@ -56,17 +57,18 @@ void ispisi_racun(std::string nazivRacuna) {
 		std::cout <<std::endl<< "Fajl za ispis ne postoji ili je doslo do greske pri otvaranju " << std::endl;
 		return;
 	}
+	//Dodata valuta sistema
 	char buffer[100];
 	fajl.getline(buffer, 100);
-	std::cout << std::endl<< "Naziv kupca: " << buffer << std::endl;
+	std::cout << std::endl << "Naziv kupca: " << buffer << std::endl;
 	fajl.getline(buffer, 100);
 	std::cout << "Datum kreiranja racuna: " << buffer << std::endl;
 	fajl.getline(buffer, 100);
-	std::cout << "Ukupna cijena(bez PDVa): " << buffer << std::endl;
+	std::cout << "Ukupna cijena(bez PDVa): " << buffer << vratiValutu() << std::endl;
 	fajl.getline(buffer, 100);
-	std::cout << "PDV: " << buffer << std::endl;
+	std::cout << "PDV: " << buffer << vratiValutu() << std::endl;
 	fajl.getline(buffer, 100);
-	std::cout << "Ukupna cijena sa PDVom: " << buffer << std::endl;
+	std::cout << "Ukupna cijena sa PDVom: " << buffer << vratiValutu() << std::endl;
 	std::cout << "Proizvod    -  kolicina  -  cijena  -  ukupno " << std::endl;
 	while (fajl.getline(buffer, 100)) {
 		ispisi_artikal(buffer);
