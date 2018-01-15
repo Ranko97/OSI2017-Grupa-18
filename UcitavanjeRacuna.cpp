@@ -100,7 +100,7 @@ void obradi_racun(const char* naziv) {
 	brfajl.close();
 	brfajl.open("obradjeni racuni/broj racuna.txt", ios::out);
 	brfajl << ukupan_broj_racuna << "\n";
-
+	brfajl.close();
 	/*
 	Otvaramo fajl "broj racuna" koji se nalazi u folderu "obradjeni racuni"
 	i iz njega citamo trenutni broj racuna, uvecavamo ga za jedan i pisemo ga u isti fajl.
@@ -136,6 +136,8 @@ void obradi_racun(const char* naziv) {
 		break;
 	}
 	remove(puniNaziv2.c_str());
+	provjeraRacuna(puniNaziv);
+
 }
 
 void ucitavanje_racuna() {
@@ -143,4 +145,99 @@ void ucitavanje_racuna() {
 	for (string v : niz) {
 		obradi_racun(v.c_str());
 	}
+}
+
+inline bool ispravniPodaci(double cijena, double kolicina, double ukupno)
+{
+	return (ukupno == cijena*kolicina) ? true : false;
+}
+
+
+//Ovdje se provjerava da li je racun ispravan
+void provjeraRacuna(std::string imeRacuna)
+{
+	bool ispravan = true;
+	std::ifstream racunProvjera(imeRacuna.c_str());
+	char buffer[100];
+	racunProvjera.getline(buffer, 100);
+	racunProvjera.getline(buffer, 100);
+
+	double ukupno, pdv, saPdv;
+	racunProvjera >> ukupno;
+	racunProvjera >> pdv;
+	racunProvjera >> saPdv;
+	if (ukupno + pdv != saPdv)
+		ispravan = false;
+	//Provjera konzistentnosti
+
+	std::string artikal;
+
+	if (!racunProvjera.is_open())
+	{
+		std::cout << "Greska pri provjeri racuna";
+		return;
+	}
+
+	double kolicina = 0, cijena = 0, ukupno1 = 0;
+
+	std::getline(racunProvjera, artikal, '-');
+	while (artikal != "\n")
+	{
+		racunProvjera >> kolicina;
+		racunProvjera >> cijena;
+		racunProvjera >> ukupno1;
+		cijena = -cijena;   //Jer se dobiju negativne vrijednosti
+		ukupno1 = -ukupno1;
+
+		if (!ispravniPodaci(cijena, kolicina, ukupno1))
+			ispravan = false;
+		std::getline(racunProvjera, artikal, '-');
+	}
+	racunProvjera.close();
+
+
+	if (!ispravan)
+	{
+		std::ifstream brRac("Racuni sa greskom/brRac.txt");
+		if (!brRac.is_open()) {
+			std::cout << "Greska pri otvaranju fajla koji sadrzi broj racuna!" << std::endl;
+			return;
+		}
+		//Povecanje broja racuna sa greskom
+		int broj;
+		brRac >> broj;
+		broj++;
+		brRac.close();
+		std::ofstream brRacuna("Racuni sa greskom/brRac.txt");
+		brRacuna << broj;
+		brRacuna.close();
+
+		std::string novoImeRacuna = "Racuni sa greskom/";
+		novoImeRacuna += std::to_string(broj);
+		novoImeRacuna += ".txt";
+
+		if (rename(imeRacuna.c_str(), novoImeRacuna.c_str()) != 0)
+		{
+			std::cout << "Greska pri prebacivanju fajla";
+			return;
+		}
+		// Premjestanje racuna
+
+		std::ifstream brRac2("obradjeni racuni/broj racuna.txt");
+		if (!brRac2.is_open()) {
+			std::cout << "Greska pri otvaranju fajla koji sadrzi broj racuna!" << std::endl;
+			return;
+		}
+
+		// Smanjivanje broja obradjenih racuna
+		int broj2;
+		brRac2 >> broj2;
+		broj2--;
+		brRac2.close();
+		std::ofstream brRacuna2("obradjeni racuni/broj racuna.txt");
+		brRacuna2 << broj2;
+		brRacuna2.close();
+
+	}
+
 }
