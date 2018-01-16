@@ -19,7 +19,16 @@ void meniZaAdministratora()
 		std::cout << "Provjera valute                        - 4 -" << std::endl;
 		std::cout << "Izlaz                                  - 0 -" << std::endl;
 		std::cout << "Opcija:  ";
-		std::cin >> opcija;
+		do {
+			
+			std::cin >> opcija;
+			if (std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore();
+			}
+
+		} while (opcija < 0 || opcija>5|| std::cin.fail() ); //Provjera da li je unos dobar
 		std::cout << std::endl << std::endl;
 		switch (opcija)
 		{

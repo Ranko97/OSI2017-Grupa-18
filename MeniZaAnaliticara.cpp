@@ -15,7 +15,18 @@ while (opcija)
 	std::cout << "Filtriraj racune po kupcu		- 1 -" << std::endl;
 	std::cout << "Izlaz                         - 0 -" << std::endl;
 	std::cout << "Opcija:  ";
-	std::cin >> opcija;
+
+	do {
+		opcija = 6; // Da bi provjera ispravno radila
+		std::cin >> opcija;
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore();
+		}
+
+	} while (opcija < 0 || opcija>5 || std::cin.fail()); //Provjera da li je unos dobar
+
 	std::cout << std::endl << std::endl;
 	switch (opcija)
 	{
