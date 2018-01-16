@@ -212,9 +212,10 @@ void provjeraRacuna(std::string imeRacuna)
 		brRacuna << broj;
 		brRacuna.close();
 
+		//Upisivanje racuna u fajl za greske
 		std::string novoImeRacuna = "Racuni sa greskom/";
 		novoImeRacuna += std::to_string(broj);
-		novoImeRacuna += ".txt";
+		novoImeRacuna += "_error.txt";
 
 		if (rename(imeRacuna.c_str(), novoImeRacuna.c_str()) != 0)
 		{
