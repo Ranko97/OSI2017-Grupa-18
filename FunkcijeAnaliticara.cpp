@@ -94,6 +94,46 @@ bool provjeriKupca(std::string nazivRacuna, std::string kupac) {
 
 }
 
+int provjeraMjeseca(std::string nazivFajla, int godina, int mjesec)
+{
+	ObradjenRacun racun;
+	std::ifstream obradjenR(nazivFajla);
+
+	obradjenR >> racun.kupac;
+	obradjenR >> racun.datum;
+	obradjenR >> racun.ukupno;
+	obradjenR >> racun.pdv;
+	obradjenR >> racun.ukupnoSaPdv;
+
+	//Provjera datuma;
+	int godinaS, mjesecS;
+	int datum = parseDate(racun.datum);
+
+	godinaS = datum / 10000;
+	mjesecS = datum % 10000;
+	mjesecS %= 100;
+
+	if (godina != godinaS || mjesec != mjesecS)
+		return 0;
+	obradjenR.close();
+	ispisi_racun(nazivFajla);
+	return 1;
+}
+
+int parseDate(const std::string & input)
+{
+	int month;
+	int day;
+	int year;
+	if (sscanf_s(input.c_str(), "%d/%d/%d", &month, &day, &year) != 3) {
+		// handle error
+	}
+	else {
+		// check values to avoid int overflow if you can be bothered
+		return 10000 * year + 100 * month + day;
+	}
+}
+
 void filtrirajPoKupcu(std::string kupac) {
 	std::ifstream brrac("obradjeni racuni/broj racuna.txt");
 	if (!brrac.is_open()) {
@@ -119,4 +159,37 @@ void filtrirajPoKupcu(std::string kupac) {
 	if (brojac == 0)
 		std::cout << std::endl << "Nema racuna sa tim kupcem! " << std::endl;
 
+}
+
+void filtrirajPoMjesecu(int godina, int mjesec)
+{
+	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
+	if (!brRac.is_open()) {
+		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
+		return;
+	}
+	int brojRacuna;
+	brRac >> brojRacuna;
+	brRac.close();
+
+	if (brojRacuna == 0)
+	{
+		std::cout << "Nema racuna za ispis." << std::endl;
+		return;
+	}
+
+	int barJedan = 0;
+
+	for (int i = 1; i <= brojRacuna; i++)
+	{
+		std::string imeFajla = "obradjeni racuni/";
+		imeFajla += std::to_string(i);
+		imeFajla += ".txt";
+		barJedan += provjeraMjeseca(imeFajla, godina, mjesec);
+	}
+
+	if (!barJedan)
+		std::cout << "Nema racuna u ovom mjesecu." << std::endl;
+	else
+		std::cout << "Ukupno " << barJedan << " racuna u ovom mjesecu." << std::endl;
 }
