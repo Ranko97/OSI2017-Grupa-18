@@ -14,6 +14,7 @@ while (opcija)
 	std::cout << std::endl << std::endl;
 	std::cout << "Filtriraj racune po kupcu		- 1 -" << std::endl;
 	std::cout << "Filtriraj racune po mjesecu		- 2 -" << std::endl;
+	std::cout << "Sortiranje artikala po prometu		- 3 -" << std::endl;
 	std::cout << "Izlaz					- 0 -" << std::endl;
 	std::cout << "Opcija:  ";
 
@@ -62,6 +63,10 @@ while (opcija)
 
 
 		filtrirajPoMjesecu(godina, mjesec);
+		break;
+
+	case 3:
+		sortirajPoPrometu();
 		break;
 
 	case 0:
