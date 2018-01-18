@@ -16,7 +16,7 @@ struct Artikal
 	double cijena;
 	double ukupno;
 };
-
+void ispisUkupnogPoslovanja();
 int is_exist(Artikal&, Artikal*, int&);
 void upisiUArtikal(char*, Artikal&);
 Artikal* realociraj(Artikal*, int&);

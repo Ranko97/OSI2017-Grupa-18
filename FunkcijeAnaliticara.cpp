@@ -339,3 +339,48 @@ void sortirajPoPrometu()
 	ispisi_artikle(niz, broj_artikala);
 	delete[] niz;
 }
+
+void ispisUkupnogPoslovanja(){
+	double ukupnoPoslovanje = 0;
+	double pom;
+	char buffer[50];
+	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
+	if (!brRac.is_open()) {
+		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
+		return;
+	}
+	int brojRacuna;
+	brRac >> brojRacuna;
+	brRac.close();
+
+	if (brojRacuna == 0)
+	{
+		std::cout << "Nema racuna za ispis." << std::endl;
+		return;
+	}
+	std::ifstream RacunUObradi;
+	std::string imeFajla;
+	for (int i = 1; i <= brojRacuna; i++)
+	{
+		imeFajla = "obradjeni racuni/";
+		imeFajla += std::to_string(i);
+		imeFajla += ".txt";
+		RacunUObradi.open(imeFajla.c_str());
+		for (int j = 0; j < 4; j++)
+			RacunUObradi.getline(buffer, 51);
+		RacunUObradi >> pom;
+		ukupnoPoslovanje += pom;
+		RacunUObradi.close();
+	}
+	std::ifstream valuta("Valuta_sistema");
+	if (!valuta.is_open()) {
+		std::cout << std::endl << "Greska pri otvaranju fajla valute sistema" << std::endl;
+		return;
+	}
+	
+	std::string valuta_sistema;
+	valuta >> valuta_sistema;
+	valuta.close();
+	std::cout << std::endl << "Dosadasnji ostvaren profit preduzeca je: " << ukupnoPoslovanje << valuta_sistema << std::endl;
+
+}
