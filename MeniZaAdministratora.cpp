@@ -8,11 +8,9 @@ void meniZaAdministratora()
 	int tip;
 	int dobro;
 	int opcija = 111;
-	std::cout << "" << std::endl << std::endl << std::endl;
-
 	while (opcija)
 	{
-		std::cout << std::endl << std::endl;
+		std::cout << std::endl << "=====MENI ZA ADMINISTRATORA=====" << std::endl << std::endl;
 		std::cout << "Registracija novih korisnika na sistem - 1 -" << std::endl;
 		std::cout << "Brisanje naloga sa sistema             - 2 -" << std::endl;
 		std::cout << "Podesavanje valute sistema             - 3 -" << std::endl;

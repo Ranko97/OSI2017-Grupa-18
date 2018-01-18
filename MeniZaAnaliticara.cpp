@@ -9,10 +9,9 @@ void meniZaAnaliticara(){
 	char buffer[100];
 	std::string kupac;
 	std::string naziv;
-
 while (opcija)
 {
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl << "=====MENI ZA ANALITICARA=====" << std::endl << std::endl;
 	std::cout << "Filtriraj racune po kupcu		- 1 -" << std::endl;
 	std::cout << "Filtriraj racune po mjesecu		- 2 -" << std::endl;
 	std::cout << "Sortiranje artikala po prometu		- 3 -" << std::endl;

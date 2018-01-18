@@ -11,11 +11,11 @@ void glavniMeni()
 	{
 		
 		Nalog nalog;
-		std::cout << "Unesite ime naloga: " << std::endl;
+		std::cout << "Unesite ime naloga: ";
 		std::cin >> nalog.imeNaloga;
-		std::cout << "Unesite svoj PIN: " << std::endl;
+		std::cout << "Unesite svoj PIN: ";
 		std::cin >> nalog.pinNaloga;
-
+		std::cout << std::endl;
 		tipNaloga = imalNaloga(nalog.imeNaloga, nalog.pinNaloga);
 		brojPokusaja--;
 		if (tipNaloga == 0)
