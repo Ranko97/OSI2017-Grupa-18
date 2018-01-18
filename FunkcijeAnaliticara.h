@@ -9,7 +9,22 @@ public:
 	double ukupno, pdv, ukupnoSaPdv;
 };
 
-void ispisi_artikal(char*);
+struct Artikal
+{
+	std::string ime;
+	int kolicina;
+	double cijena;
+	double ukupno;
+};
+
+int is_exist(Artikal&, Artikal*, int&);
+void upisiUArtikal(char*, Artikal&);
+Artikal* realociraj(Artikal*, int&);
+void obradiArtikal(char*, Artikal**, int&, int&);
+void sortiraj(Artikal*, int);
+void ispisi_artikle(Artikal*, int);
+void sortirajPoPrometu();
+void ispisi_artikal(const char*);
 void ispisi_racun(std::string);
 void filtrirajPoKupcu(std::string);
 void filtrirajPoMjesecu(int godina, int mjesec);

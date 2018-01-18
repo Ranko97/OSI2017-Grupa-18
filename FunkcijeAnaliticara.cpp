@@ -4,7 +4,7 @@
 #include <iostream>
 #include "FunkcijeAdministratora.h"
 
-void ispisi_artikal(char* buffer) {
+void ispisi_artikal(const char* buffer) {
 	int brojac = 0;
 	int i = 0;
 	while (buffer[i] != '-') {
@@ -192,4 +192,150 @@ void filtrirajPoMjesecu(int godina, int mjesec)
 		std::cout << "Nema racuna u ovom mjesecu." << std::endl;
 	else
 		std::cout << "Ukupno " << barJedan << " racuna u ovom mjesecu." << std::endl;
+}
+
+int is_exist(Artikal& a, Artikal* niz, int& broj_artikala)
+{
+	for (int i = 0; i < broj_artikala; i++)
+	{
+		if (a.ime == niz[i].ime)
+			return i;
+	}
+	return -1;
+}
+
+void upisiUArtikal(char* buffer, Artikal& a)
+{
+	char buffer2[20];
+	int brojac = 0;
+	while (buffer[brojac] != '-')
+	{
+		buffer2[brojac] = buffer[brojac];
+		brojac++;
+	}
+	buffer2[brojac] = '\0';
+	a.ime = buffer2;
+	brojac++;
+	int i = 0;
+	while (buffer[brojac] != '-')
+	{
+		buffer2[i++] = buffer[brojac++];
+	}
+	buffer2[i] = '\0';
+	a.kolicina = strtol(buffer2, NULL, 10);
+	brojac++;
+	i = 0;
+	while (buffer[brojac] != '-')
+	{
+		buffer2[i++] = buffer[brojac++];
+	}
+	buffer2[i] = '\0';
+	a.cijena = strtold(buffer2, NULL);
+	brojac++;
+	i = 0;
+	while (buffer[brojac] != '\0')
+	{
+		buffer2[i++] = buffer[brojac++];
+	}
+	buffer2[i] = '\0';
+	a.ukupno = strtold(buffer2, NULL);
+}
+
+Artikal* realociraj(Artikal* niz, int& kapacitet)
+{
+	kapacitet *= 2;
+	Artikal* pom = new Artikal[kapacitet];
+	for (int i = 0; i < kapacitet / 2; i++)
+		pom[i] = niz[i];
+	delete[] niz;
+	return pom;
+}
+
+void obradiArtikal(char*  buffer, Artikal** niz, int& kapacitet, int& broj_artikala)
+{
+	Artikal a;
+	upisiUArtikal(buffer, a);
+ 	int indeks = is_exist(a, *niz, broj_artikala);
+	if (indeks != -1)
+	{
+		(*niz)[indeks].kolicina += a.kolicina;
+		(*niz)[indeks].ukupno += a.ukupno;
+	}
+	else
+	{
+		(*niz)[broj_artikala++] = a;
+	}
+	if (broj_artikala == kapacitet)
+		(*niz) = realociraj(*niz, kapacitet);
+	}
+
+void sortiraj(Artikal* niz, int broj_artikala)
+{
+	Artikal pom;
+	for (int i = 0; i < broj_artikala - 1; i++)
+	{
+		for (int j = i + 1; j < broj_artikala; j++)
+		{
+			if (niz[j].kolicina > niz[i].kolicina)
+			{
+				pom = niz[j];
+				niz[j] = niz[i];
+				niz[i] = pom;
+			}
+		}
+	}
+}
+
+void ispisi_artikle(Artikal* niz, int broj_artikala)
+{
+	std::cout << std::endl<< "    Ispis artikala sortiranih po prometu    " << std::endl;
+	std::cout << "Naziv      Kolicina         Cijena        Ukupno" << std::endl;
+	std::string art;
+	Artikal a;
+	for (int i = 0; i < broj_artikala; i++)
+	{
+		a = niz[i];
+		art = a.ime+'-' + std::to_string(a.kolicina) +'-'+ std::to_string(a.cijena)+'-'+ std::to_string(a.ukupno);
+		ispisi_artikal(art.c_str());
+	}
+	std::cout << std::endl;
+}
+
+void sortirajPoPrometu()
+{
+	char buffer[50];
+	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
+	if (!brRac.is_open()) {
+		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
+		return;
+	}
+	int brojRacuna;
+	brRac >> brojRacuna;
+	brRac.close();
+
+	if (brojRacuna == 0)
+	{
+		std::cout << "Nema racuna za ispis." << std::endl;
+		return;
+	}
+	std::ifstream RacunUObradi;
+	int n = 50;
+	int broj_artikala = 0;
+	Artikal* niz = new Artikal[n];
+	std::string imeFajla;
+	for (int i = 1; i <= brojRacuna; i++)
+	{
+		imeFajla = "obradjeni racuni/";
+		imeFajla += std::to_string(i);
+		imeFajla += ".txt";
+		RacunUObradi.open(imeFajla.c_str());
+		for (int j = 0; j < 5; j++)
+			RacunUObradi.getline(buffer, 51);
+		while (RacunUObradi.getline(buffer, 51))
+			obradiArtikal(buffer, &niz, n, broj_artikala);
+		RacunUObradi.close();
+	}
+	sortiraj(niz, broj_artikala);
+	ispisi_artikle(niz, broj_artikala);
+	delete[] niz;
 }
