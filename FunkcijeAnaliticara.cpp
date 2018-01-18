@@ -490,3 +490,66 @@ void ispisRacunaGreska()
 		ispisi_racun(nazivRacuna);
 	}
 }
+
+void filtrirajpoArtiklu(std::string naziv)
+{
+	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
+	if (!brRac.is_open()) {
+		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
+		return;
+	}
+	int brojRacuna;
+	brRac >> brojRacuna;
+	brRac.close();
+	if (brojRacuna == 0)
+	{
+		std::cout << "Nema racuna za ispis." << std::endl;
+		return;
+	}
+	std::ifstream RacunUObradi;
+	std::string imeFajla;
+	Artikal prvi;
+	prvi.ime = naziv;
+	prvi.cijena =prvi.kolicina=prvi.ukupno=0;
+	Artikal drugi;
+	char buffer[40];
+	int brojac = 0;
+	char nazivv[20];
+	char datum[12];
+
+	for (int i = 1; i <= brojRacuna; i++)
+	{
+		imeFajla = "obradjeni racuni/";
+		imeFajla += std::to_string(i);
+		imeFajla += ".txt";
+		RacunUObradi.open(imeFajla.c_str());
+		RacunUObradi.getline(nazivv, 20);
+		RacunUObradi.getline(datum, 12);
+		for (int j = 0; j < 3; j++)
+			RacunUObradi.getline(buffer, 40);
+		while (RacunUObradi.getline(buffer, 40))
+		{
+			upisiUArtikal(buffer, drugi);
+			if (prvi.ime == drugi.ime)
+			{
+				++brojac;
+				prvi.cijena = drugi.cijena;
+				prvi.kolicina += drugi.kolicina;
+				prvi.ukupno += drugi.ukupno;
+				std::cout << std::endl<< "Podaci o racunu " << brojac << ". u kom se artikal nalazi:" << std::endl;
+				std::cout << " Naziv kupca: " << nazivv << std::endl;
+				std::cout << "Datum izavanja racuna: " << datum << std::endl;
+				std::cout << "Artikal:    "<<std::endl;
+				std::cout << "Proizvod    -  kolicina  -  cijena  -  ukupno " << std::endl;
+				ispisi_artikal(buffer);
+				std::cout << std::endl;
+			}
+
+		}
+		RacunUObradi.close();
+	}
+	
+	std::cout <<std::endl << std::endl << "Ukupno se artikal nalazi u " << brojac << ". racuna" << std::endl;
+	std::cout << "Ukupno je prodan " << prvi.kolicina << ". puta" << std::endl;
+	std::cout << "Ukupan profitiran iznos nad njim je: " << prvi.ukupno << vratiValutu() << std::endl;
+}

@@ -8,6 +8,7 @@ void meniZaAnaliticara(){
 	int opcija = 1;
 	char buffer[100];
 	std::string kupac;
+	std::string naziv;
 
 while (opcija)
 {
@@ -17,7 +18,8 @@ while (opcija)
 	std::cout << "Sortiranje artikala po prometu		- 3 -" << std::endl;
 	std::cout << "Ispis ukupnog poslovanja preduzeca	- 4 -" << std::endl;
 	std::cout << "Sortiranje klijenata po prometu	        - 5 -" << std::endl;
-	std::cout << "Ispis racuna sa greskom	              - 6 -" << std::endl;
+	std::cout << "Ispis racuna sa greskom	                - 6 -" << std::endl;
+	std::cout << "Filtriraj racune po artiklu	        - 7 -" << std::endl;
 	std::cout << "Izlaz					- 0 -" << std::endl;
 	std::cout << "Opcija:  ";
 
@@ -80,6 +82,16 @@ while (opcija)
 	case 6:
 		ispisRacunaGreska();
 		break;
+	case 7:
+		
+		std::cout << std::endl << "Unesi naziv artikla po kom hocete da filtrirate: "<<std::endl;
+		std::getline(std::cin, naziv);
+		std::getline(std::cin, naziv);
+
+		
+		filtrirajpoArtiklu(naziv);
+		break;
+
 	case 0:
 		return;
 	default:

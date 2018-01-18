@@ -22,7 +22,7 @@ struct Kupac
 	double ukupna_cijena;
 	Kupac();
 };
-
+void filtrirajpoArtiklu(std::string);
 void ispisRacunaGreska();
 void sortirajKlijente();
 void sortiraj_i_ispisi(Kupac*, int);
