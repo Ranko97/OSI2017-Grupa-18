@@ -2,9 +2,8 @@
 #include <string>
 
 
-class ObradjenRacun
+struct ObradjenRacun
 {
-public:
 	std::string datum, kupac;
 	double ukupno, pdv, ukupnoSaPdv;
 };
@@ -16,6 +15,19 @@ struct Artikal
 	double cijena;
 	double ukupno;
 };
+
+struct Kupac
+{
+	std::string naziv;
+	double ukupna_cijena;
+	Kupac();
+};
+void sortirajKlijente(); 
+void sortiraj_i_ispisi(Kupac*, int);
+int is_exist_kupac(Kupac*, std::string&, int&);
+void sortirajKlijente();
+void sortiraj_i_ispisi(Kupac*, int);
+int is_exist_kupac(Kupac*, std::string&, int&);
 void ispisUkupnogPoslovanja();
 int is_exist(Artikal&, Artikal*, int&);
 void upisiUArtikal(char*, Artikal&);

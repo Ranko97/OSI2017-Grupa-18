@@ -384,3 +384,89 @@ void ispisUkupnogPoslovanja(){
 	std::cout << std::endl << "Dosadasnji ostvaren profit preduzeca je: " << ukupnoPoslovanje << valuta_sistema << std::endl;
 
 }
+
+Kupac::Kupac():ukupna_cijena(0){}
+
+int is_exist_kupac(Kupac* niz,std::string& ime, int& broj_kupaca)
+{
+	for (int i = 0; i < broj_kupaca; i++)
+		if (niz[i].naziv == ime)
+			return i;
+	return -1;
+}
+
+void sortiraj_i_ispisi(Kupac* niz,int broj_kupaca)
+{
+	Kupac pom;
+	for (int i = 0; i < broj_kupaca - 1; i++)
+	{
+		for (int j = i + 1; j < broj_kupaca; j++)
+		{
+			if (niz[j].ukupna_cijena > niz[i].ukupna_cijena)
+			{
+				pom = niz[j];
+				niz[j] = niz[i];
+				niz[i] = pom;
+			}
+		}
+	}
+	std::ifstream valuta("Valuta_sistema");
+	if (!valuta.is_open()) {
+		std::cout << std::endl << "Greska pri otvaranju fajla valute sistema" << std::endl;
+		return;
+	}
+
+	std::string valuta_sistema;
+	valuta >> valuta_sistema;
+	valuta.close();
+	std::cout << std::endl << " ===Klijenti sortirani po ostvarenom profitu nad njima===" << std::endl;
+	for (int i = 0; i < broj_kupaca; i++)
+		std::cout << "    Naziv " << i + 1 << ". klijenta: " << niz[i].naziv << "=====ukupan profit: " << niz[i].ukupna_cijena <<valuta_sistema<< std::endl;
+
+	
+}
+
+void sortirajKlijente()
+{
+	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
+	if (!brRac.is_open()) {
+		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
+		return;
+	}
+	int brojRacuna;
+	brRac >> brojRacuna;
+	brRac.close();
+	if (brojRacuna == 0)
+	{
+		std::cout << "Nema racuna za ispis." << std::endl;
+		return;
+	}
+	Kupac* niz = new Kupac[brojRacuna];
+	std::ifstream RacunUObradi;
+	std::string imeFajla;
+	int broj_kupaca = 0;
+	Kupac pom;
+	char buffer[30];
+	int indeks;
+	for (int i = 1; i <= brojRacuna; i++)
+	{
+		imeFajla = "obradjeni racuni/";
+		imeFajla += std::to_string(i);
+		imeFajla += ".txt";
+		RacunUObradi.open(imeFajla.c_str());
+		RacunUObradi.getline(buffer, 30);
+		pom.naziv = buffer;
+		for(int j=0;j<3;j++)
+			RacunUObradi.getline(buffer, 30);
+		RacunUObradi.getline(buffer, 30);
+		pom.ukupna_cijena = strtod(buffer,NULL);
+		indeks = is_exist_kupac(niz,pom.naziv, broj_kupaca);
+		if (indeks != -1)
+			niz[indeks].ukupna_cijena =niz[indeks].ukupna_cijena+ pom.ukupna_cijena;
+		else
+			niz[broj_kupaca++] = pom;
+		RacunUObradi.close();
+	}
+	sortiraj_i_ispisi(niz, broj_kupaca);
+	delete[] niz;
+}

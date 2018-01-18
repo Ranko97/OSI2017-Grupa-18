@@ -1,6 +1,6 @@
 eKnjigovodja Banja Luka
 Poslovnica: ETF
-Kupac: ABC
+Kupac: ABBC
 Datum: 24/10/2017
 
 	Maloprodajni racun
@@ -8,9 +8,9 @@ Datum: 24/10/2017
 Proizvod  Kolicina  Cijena  Ukupno
 ----------------------------------
 abc 123======10======5======50
-abb 456======20======10======200
+abb 456======200======10======2000
 ----------------------------------
 
-Ukupno: 250		PDV: 42.5
+Ukupno: 2050		PDV: 42.5
 
-Ukupno za placanje: 292.5 	
+Ukupno za placanje: 2092.5 	
