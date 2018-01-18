@@ -276,7 +276,7 @@ void sortiraj(Artikal* niz, int broj_artikala)
 	{
 		for (int j = i + 1; j < broj_artikala; j++)
 		{
-			if (niz[j].kolicina > niz[i].kolicina)
+			if (niz[j].ukupno > niz[i].ukupno)
 			{
 				pom = niz[j];
 				niz[j] = niz[i];
@@ -298,7 +298,7 @@ void ispisi_artikle(Artikal* niz, int broj_artikala)
 		art = a.ime+'-' + std::to_string(a.kolicina) +'-'+ std::to_string(a.cijena)+'-'+ std::to_string(a.ukupno);
 		ispisi_artikal(art.c_str());
 	}
-	std::cout << std::endl;
+	std::cout <<"   NAPOMENA: Sve cijene su u valuti "<<vratiValutu()<< std::endl<<std::endl;
 }
 
 void sortirajPoPrometu()
