@@ -470,3 +470,23 @@ void sortirajKlijente()
 	sortiraj_i_ispisi(niz, broj_kupaca);
 	delete[] niz;
 }
+
+void ispisRacunaGreska()
+{
+	std::ifstream brRac("Racuni sa greskom/brRac.txt");
+	if(!brRac.is_open())
+		{
+		std::cout << std::endl << "Greska pri otvaranju racuna sa brojem error fajlova! " << std::endl;
+		return;
+	 }
+	int broj_racuna;
+	brRac >> broj_racuna;
+	brRac.close();
+	std::string nazivRacuna;
+	for (int i = 1; i <= broj_racuna; ++i)
+	{
+		nazivRacuna = "Racuni sa greskom/" + std::to_string(i) + "_error.txt";
+		std::cout << i << ". racun sa greskom: " << std::endl;
+		ispisi_racun(nazivRacuna);
+	}
+}

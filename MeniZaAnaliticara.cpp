@@ -17,11 +17,12 @@ while (opcija)
 	std::cout << "Sortiranje artikala po prometu		- 3 -" << std::endl;
 	std::cout << "Ispis ukupnog poslovanja preduzeca	- 4 -" << std::endl;
 	std::cout << "Sortiranje klijenata po prometu	        - 5 -" << std::endl;
+	std::cout << "Ispis racuna sa greskom	              - 6 -" << std::endl;
 	std::cout << "Izlaz					- 0 -" << std::endl;
 	std::cout << "Opcija:  ";
 
 	do {
-		opcija = 6; // Da bi provjera ispravno radila
+		opcija = 9; // Da bi provjera ispravno radila
 		std::cin >> opcija;
 		if (std::cin.fail())
 		{
@@ -29,7 +30,7 @@ while (opcija)
 			std::cin.ignore();
 		}
 
-	} while (opcija < 0 || opcija>5 || std::cin.fail()); //Provjera da li je unos dobar
+	} while (opcija < 0 || opcija>8 || std::cin.fail()); //Provjera da li je unos dobar
 
 	std::cout << std::endl << std::endl;
 	switch (opcija)
@@ -75,6 +76,9 @@ while (opcija)
 		break;
 	case 5:
 		sortirajKlijente();
+		break;
+	case 6:
+		ispisRacunaGreska();
 		break;
 	case 0:
 		return;
