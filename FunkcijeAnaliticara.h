@@ -22,9 +22,6 @@ struct Kupac
 	double ukupna_cijena;
 	Kupac();
 };
-void sortirajKlijente(); 
-void sortiraj_i_ispisi(Kupac*, int);
-int is_exist_kupac(Kupac*, std::string&, int&);
 void sortirajKlijente();
 void sortiraj_i_ispisi(Kupac*, int);
 int is_exist_kupac(Kupac*, std::string&, int&);
