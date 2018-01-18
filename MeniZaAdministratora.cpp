@@ -10,12 +10,12 @@ void meniZaAdministratora()
 	int opcija = 111;
 	while (opcija)
 	{
-		std::cout << std::endl << "=====MENI ZA ADMINISTRATORA=====" << std::endl << std::endl;
+		std::cout << std::endl << "	==== Meni za administratora ====" << std::endl << std::endl;
 		std::cout << "Registracija novih korisnika na sistem - 1 -" << std::endl;
 		std::cout << "Brisanje naloga sa sistema             - 2 -" << std::endl;
 		std::cout << "Podesavanje valute sistema             - 3 -" << std::endl;
 		std::cout << "Provjera valute                        - 4 -" << std::endl;
-		std::cout << "Izlaz                                  - 0 -" << std::endl;
+		std::cout << "Nazad na meni prijave                  - 0 -" << std::endl;
 		std::cout << "Opcija:  ";
 		do {
 			
@@ -33,7 +33,7 @@ void meniZaAdministratora()
 		case 1: 
 			std::cout << "Dodaj ime novog naloga: " << std::endl;
 			std::cin >> ime;
-			std::cout << "Dodaj novi PIN: " << std::endl;
+			std::cout << "Dodaj novi PIN (max 4 znaka): " << std::endl;
 			std::cin >> pin;
 			do {
 				std::cout << "Dodaj tip naloga (1-administrator, 2-analiticar)" << std::endl;

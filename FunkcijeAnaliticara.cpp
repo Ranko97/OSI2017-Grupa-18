@@ -288,7 +288,7 @@ void sortiraj(Artikal* niz, int broj_artikala)
 
 void ispisi_artikle(Artikal* niz, int broj_artikala)
 {
-	std::cout << std::endl<< "    Ispis artikala sortiranih po prometu    " << std::endl;
+	std::cout << std::endl<< "    Ispis artikala sortiranih po prometu:    " << std::endl;
 	std::cout << "Naziv      Kolicina         Cijena        Ukupno" << std::endl;
 	std::string art;
 	Artikal a;
@@ -298,7 +298,7 @@ void ispisi_artikle(Artikal* niz, int broj_artikala)
 		art = a.ime+'-' + std::to_string(a.kolicina) +'-'+ std::to_string(a.cijena)+'-'+ std::to_string(a.ukupno);
 		ispisi_artikal(art.c_str());
 	}
-	std::cout <<"   NAPOMENA: Sve cijene su u valuti "<<vratiValutu()<< std::endl<<std::endl;
+	std::cout << "   NAPOMENA: Sve cijene su u valuti " << vratiValutu() << std::endl << std::endl;
 }
 
 void sortirajPoPrometu()
@@ -381,7 +381,7 @@ void ispisUkupnogPoslovanja(){
 	std::string valuta_sistema;
 	valuta >> valuta_sistema;
 	valuta.close();
-	std::cout << std::endl << "Dosadasnji ostvaren profit preduzeca je: " << ukupnoPoslovanje << valuta_sistema << std::endl;
+	std::cout << std::endl << "Dosadasnja ostvarena vrijednost poslovanja preduzeca je: " << ukupnoPoslovanje << valuta_sistema << std::endl;
 
 }
 
@@ -419,9 +419,9 @@ void sortiraj_i_ispisi(Kupac* niz,int broj_kupaca)
 	std::string valuta_sistema;
 	valuta >> valuta_sistema;
 	valuta.close();
-	std::cout << std::endl << " ===Klijenti sortirani po ostvarenom profitu nad njima===" << std::endl;
+	std::cout << std::endl << " ===Klijenti sortirani po ostvarenom prometu sa njima===" << std::endl;
 	for (int i = 0; i < broj_kupaca; i++)
-		std::cout << "    Naziv " << i + 1 << ". klijenta: " << niz[i].naziv << "=====ukupan profit: " << niz[i].ukupna_cijena <<valuta_sistema<< std::endl;
+		std::cout << "    Naziv " << i + 1 << ". klijenta: " << niz[i].naziv << "=====ukupan promet: " << niz[i].ukupna_cijena <<valuta_sistema<< std::endl;
 
 	
 }
@@ -550,6 +550,6 @@ void filtrirajpoArtiklu(std::string naziv)
 	}
 	
 	std::cout <<std::endl << std::endl << "Ukupno se artikal nalazi u " << brojac << ". racuna" << std::endl;
-	std::cout << "Ukupno je prodan " << prvi.kolicina << ". puta" << std::endl;
-	std::cout << "Ukupan profitiran iznos nad njim je: " << prvi.ukupno << vratiValutu() << std::endl;
+	std::cout << "Ukupno je prodano " << prvi.kolicina << " komada." << std::endl;
+	std::cout << "Ukupna vrijednost prometa sa ovim artiklom je: " << prvi.ukupno << vratiValutu() << std::endl;
 }

@@ -11,15 +11,15 @@ void meniZaAnaliticara(){
 	std::string naziv;
 while (opcija)
 {
-	std::cout << std::endl << "=====MENI ZA ANALITICARA=====" << std::endl << std::endl;
+	std::cout << std::endl << "	==== Meni za analiticara ====" << std::endl << std::endl;
 	std::cout << "Filtriraj racune po kupcu		- 1 -" << std::endl;
 	std::cout << "Filtriraj racune po mjesecu		- 2 -" << std::endl;
-	std::cout << "Sortiranje artikala po prometu		- 3 -" << std::endl;
-	std::cout << "Ispis ukupnog poslovanja preduzeca	- 4 -" << std::endl;
+	std::cout << "Filtriraj racune po artiklu	        - 3 -" << std::endl;
+	std::cout << "Sortiranje artikala po prometu		- 4 -" << std::endl;
 	std::cout << "Sortiranje klijenata po prometu	        - 5 -" << std::endl;
-	std::cout << "Ispis racuna sa greskom	                - 6 -" << std::endl;
-	std::cout << "Filtriraj racune po artiklu	        - 7 -" << std::endl;
-	std::cout << "Izlaz					- 0 -" << std::endl;
+	std::cout << "Ispis ukupnog poslovanja preduzeca	- 6 -" << std::endl;
+	std::cout << "Ispis racuna sa greskom	                - 7 -" << std::endl;
+	std::cout << "Nazad na meni prijave			- 0 -" << std::endl;
 	std::cout << "Opcija:  ";
 
 	do {
@@ -37,7 +37,7 @@ while (opcija)
 	switch (opcija)
 	{
 	case 1:
-		std::cout << std::endl << "Unesi naziv kupca po kom hocete da filtrirate: ";
+		std::cout << std::endl << "Unesite naziv kupca po kom hocete da filtrirate: ";
 		std::cin >> kupac;
 		std::cout << std::endl;
 		filtrirajPoKupcu(kupac);
@@ -46,7 +46,7 @@ while (opcija)
 	case 2:
 		int godina, mjesec;
 		do {
-			std::cout << std::endl << "Unesi godinu: ";
+			std::cout << std::endl << "Unesite godinu: ";
 			std::cin >> godina;
 			if (std::cin.fail())
 			{
@@ -56,7 +56,7 @@ while (opcija)
 		} while (godina < 1900 || godina>3000 || std::cin.fail());
 
 		do {
-			std::cout << std::endl << "Unesi mjesec: ";
+			std::cout << std::endl << "Unesite mjesec: ";
 			std::cin >> mjesec;
 			if (std::cin.fail())
 			{
@@ -69,21 +69,21 @@ while (opcija)
 		filtrirajPoMjesecu(godina, mjesec);
 		break;
 
-	case 3:
+	case 4: 
 		sortirajPoPrometu();
 		break;
-	case 4:
+	case 6:
 		ispisUkupnogPoslovanja();
 		break;
 	case 5:
 		sortirajKlijente();
 		break;
-	case 6:
+	case 7:
 		ispisRacunaGreska();
 		break;
-	case 7:
+	case 3:
 		
-		std::cout << std::endl << "Unesi naziv artikla po kom hocete da filtrirate: "<<std::endl;
+		std::cout << std::endl << "Unesite naziv artikla po kom hocete da filtrirate: "<<std::endl;
 		std::getline(std::cin, naziv);
 		std::getline(std::cin, naziv);
 
