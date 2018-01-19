@@ -48,6 +48,7 @@ void meniZaAdministratora()
 			break;
 
 		case 2:
+			system("cls");
 			std::cout << "Dodaj ime naloga za brisanje: ";
 			std::cin >> ime;
 			obrisiNalog(ime);
@@ -56,12 +57,14 @@ void meniZaAdministratora()
 			break;
 
 		case 3:
+			system("cls");
 			podesiValutu();
 			system("pause");
 			system("cls");
 			break;
 
 		case 4:
+			system("cls");
 			valuta = vratiValutu();
 			std::cout << "Valuta je: ";
 			std::cout << valuta << std::endl;

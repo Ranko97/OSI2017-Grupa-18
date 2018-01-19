@@ -43,6 +43,7 @@ while (opcija)
 	switch (opcija)
 	{
 	case 1:
+		system("cls");
 		std::cout << std::endl << "Unesite naziv kupca po kom hocete da filtrirate: ";
 		std::getline(std::cin, kupac);
 		std::getline(std::cin, kupac);
@@ -53,6 +54,7 @@ while (opcija)
 		break;
 
 	case 2:
+		system("cls");
 		int godina, mjesec;
 		do {
 			std::cout << std::endl << "Unesite godinu: ";
@@ -81,31 +83,37 @@ while (opcija)
 		break;
 
 	case 4: 
+		system("cls");
 		sortirajPoPrometu();
 		system("pause");
 		system("cls");
 		break;
 	case 6:
+		system("cls");
 		ispisUkupnogPoslovanja();
 		system("pause");
 		system("cls");
 		break;
 	case 5:
+		system("cls");
 		sortirajKlijente();
 		system("pause");
 		system("cls");
 		break;
 	case 7:
+		system("cls");
 		ispisRacunaGreska();
 		system("pause");
 		system("cls");
 		break;
 	case 8:
+		system("cls");
 		ispisiPoMjesecima();
 		system("pause");
 		system("cls");
 		break;
 	case 9:
+		system("cls");
 		std::cout << "Unesite pocetni datum u obliku DD/MM/GGGG: ";
 		std::cin >> pocetniDatum;
 		std::cout << "Unesite krajnji datum u obliku DD/MM/GGGG: ";
@@ -116,7 +124,7 @@ while (opcija)
 		system("cls");
 		break;
 	case 3:
-		
+		system("cls");
 		std::cout << std::endl << "Unesite naziv artikla po kom hocete da filtrirate: "<<std::endl;
 		std::getline(std::cin, naziv);
 		std::getline(std::cin, naziv);
@@ -129,6 +137,7 @@ while (opcija)
 		system("cls");
 		return;
 	default:
+		system("cls");
 		std::cout << "Pogresna opcija! Probajte ponovo!" << std::endl;
 		system("cls");
 		break;
