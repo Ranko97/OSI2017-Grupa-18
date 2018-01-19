@@ -10,10 +10,10 @@ Proizvod  Kolicina  Cijena  Ukupno
 fanta ======12======2======24
 coca cola ======12======2======24
 kisela voda ======12======1.5======18
-pivo ======60======0.9======53
+pivo ======60======0.9======54
 vino ======10======7.5======75
 ----------------------------------
 
-Ukupno: 194		PDV: 32.98
+Ukupno: 195		PDV: 33.15
 
-Ukupno za placanje: 226.98
+Ukupno za placanje: 228.15
