@@ -67,10 +67,8 @@ void ispisi_artikal(const char* buffer) {
 	while (buffer[i] != '\0') {
 		std::cout << buffer[i];
 		i++;
-}
+	}
 	std::cout <<std::endl;
-
-
 }
 
 void ispisi_racun(std::string nazivRacuna) {
@@ -89,19 +87,18 @@ void ispisi_racun(std::string nazivRacuna) {
 	fajl.getline(buffer, 100);
 	std::cout << "Datum kreiranja racuna: " << buffer << std::endl;
 	fajl.getline(buffer, 100);
-	std::cout << "Ukupna cijena(bez PDVa): " << buffer << vratiValutu() << std::endl;
+	std::cout << "Ukupna cijena(bez PDV-a): " << buffer << vratiValutu() << std::endl;
 	fajl.getline(buffer, 100);
 	std::cout << "PDV: " << buffer << vratiValutu() << std::endl;
 	fajl.getline(buffer, 100);
-	std::cout << "Ukupna cijena sa PDVom: " << buffer << vratiValutu() << std::endl;
+	std::cout << "Ukupna cijena sa PDV-om: " << buffer << vratiValutu() << std::endl;
 	std::cout << "Proizvod       -  kolicina     -  cijena       -  ukupno " << std::endl;
 	while (fajl.getline(buffer, 100)) {
-		ispisi_artikal(buffer);
-		
+		ispisi_artikal(buffer);		
 	}
 	std::cout << std::endl;
 	fajl.close();
-	}
+}
 
 bool provjeriKupca(std::string nazivRacuna, std::string kupac) {
 	//Funkcija koja provjerava da je odredjeni racun naslovljen na odredjenog kupca
@@ -116,8 +113,6 @@ bool provjeriKupca(std::string nazivRacuna, std::string kupac) {
 	if (firstLine == kupac)
 		return true;
 	return false;
-
-
 }
 
 int provjeraMjeseca(std::string nazivFajla, int godina, int mjesec)
@@ -178,12 +173,10 @@ void filtrirajPoKupcu(std::string kupac) {
 		if (provjeriKupca(puniNaziv, kupac)) {
 			ispisi_racun(puniNaziv);
 			brojac++;
-		}
-		
+		}		
 	}
 	if (brojac == 0)
 		std::cout << std::endl << "Nema racuna sa tim kupcem! " << std::endl;
-
 }
 
 void filtrirajPoMjesecu(int godina, int mjesec)
@@ -207,8 +200,7 @@ void filtrirajPoMjesecu(int godina, int mjesec)
 }
 
 int is_exist(Artikal& a, Artikal* niz, int& broj_artikala)
-{
-	
+{	
 	for (int i = 0; i < broj_artikala; i++)
 	{
 		if (a.ime == niz[i].ime)
@@ -286,7 +278,8 @@ void obradiArtikal(char*  buffer, Artikal** niz, int& kapacitet, int& broj_artik
 	}
 
 void sortiraj(Artikal* niz, int broj_artikala)
-{	//Sortira artikle po ukupnoj zaradi nad njima
+{	
+	//Sortira artikle po ukupnoj zaradi nad njima
 	Artikal pom;
 	for (int i = 0; i < broj_artikala - 1; i++)
 	{
@@ -303,7 +296,8 @@ void sortiraj(Artikal* niz, int broj_artikala)
 }
 
 void ispisi_artikle(Artikal* niz, int broj_artikala)
-{   //Ispisuje sve artikle u dinamickom nizu istih
+{  
+	//Ispisuje sve artikle u dinamickom nizu istih
 	std::cout << std::endl << "    Ispis artikala sortiranih po prometu:    " << std::endl;
 	std::cout << "Naziv             Kolicina        Cijena          Ukupno" << std::endl;
 	std::string art;
@@ -318,7 +312,8 @@ void ispisi_artikle(Artikal* niz, int broj_artikala)
 }
 
 void sortirajPoPrometu()
-{	/*Funkcija koja se aktivira odabirom opcije 4 iz menija analiticara
+{	
+	/*Funkcija koja se aktivira odabirom opcije 4 iz menija analiticara
 	Sortira i ispisuje sve artikle po ukupnoj zaradi nad njima pozivajuci
 	funkcije obradiArtikal,sortiraj i ispisi_artikle
 	*/
@@ -381,7 +376,6 @@ void ispisUkupnogPoslovanja(){
 	valuta >> valuta_sistema;
 	valuta.close();
 	std::cout << std::endl << "Dosadasnja ostvarena vrijednost poslovanja preduzeca je: " << ukupnoPoslovanje << valuta_sistema << std::endl;
-
 }
 
 Kupac::Kupac():ukupna_cijena(0){}
@@ -421,8 +415,6 @@ void sortiraj_i_ispisi(Kupac* niz,int broj_kupaca)
 	std::cout << std::endl << " ===Klijenti sortirani po ostvarenom prometu sa njima===" << std::endl;
 	for (int i = 0; i < broj_kupaca; i++)
 		std::cout << "    Naziv " << i + 1 << ". klijenta: " << niz[i].naziv << "=====ukupan promet: " << niz[i].ukupna_cijena <<valuta_sistema<< std::endl;
-
-	
 }
 
 void sortirajKlijente()
@@ -526,7 +518,7 @@ void filtrirajpoArtiklu(std::string naziv)
 		RacunUObradi.close();
 	}
 	
-	std::cout <<std::endl << std::endl << "Ukupno se artikal nalazi u " << brojac << ". racuna" << std::endl;
+	std::cout <<std::endl << std::endl << "Ukupno se artikal nalazi u " << brojac << " racuna" << std::endl;
 	std::cout << "Ukupno je prodano " << prvi.kolicina << " komada." << std::endl;
 	std::cout << "Ukupna vrijednost prometa sa ovim artiklom je: " << prvi.ukupno << vratiValutu() << std::endl;
 }
@@ -563,9 +555,9 @@ void sortiraj_i_ispisi(ModifikovanDatum* niz, int n) {
 			}
 		}
 	}
-	std::cout << std::endl << "Pregled ukupnog profita ostvarenog u pojedinacnim mjesecima" << std::endl;
+	std::cout << std::endl << "Pregled ukupne vrijednosti robe prodate u pojedinacnim mjesecima" << std::endl;
 	for(int i=0;i<n;i++)
-		std::cout << "U mjesecu " << niz[i].mjesec << ". godine " << niz[i].godina << " ostvareno je ukupno " << niz[i].ukupno << vratiValutu() << " profita." << std::endl;
+		std::cout << "U " << niz[i].mjesec << ". mjesecu " << niz[i].godina << ". godine prodata je roba u vrijednosti " << niz[i].ukupno << vratiValutu() << " ." << std::endl;
 	std::cout << std::endl;
 }
 
@@ -653,6 +645,5 @@ void obradiRacuneIzIntervala(std::string pocetniDatum, std::string krajnjiDatum)
 		std::cout << "U sistemu nema racuna u ovom intervalu!" << std::endl;
 		return;
 	}
-	std::cout << std::endl << "Ukupno je obradjeno " << brojac << " racuna u ovom intervalu."<<std::endl<<"Ukupan profit nad ovim racunima je: " << ukupno << vratiValutu()<<std::endl;
-
+	std::cout << std::endl << "Ukupno je obradjeno " << brojac << " racuna u ovom intervalu." << std::endl << "Ukupna vrijednost robe je: " << ukupno << vratiValutu() << std::endl;
 }

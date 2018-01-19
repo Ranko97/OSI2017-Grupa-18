@@ -112,10 +112,8 @@ while (opcija)
 		std::cout << "Pogresna opcija! Probajte ponovo!" << std::endl;
 		break;
 
-	}
-
+		}
 
 }
-
 
 }

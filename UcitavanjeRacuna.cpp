@@ -70,7 +70,6 @@ int tip_racuna(const char* naziv) {
 	std::cout << "Neispravan format racuna!" << std::endl;
 	fajl.close();
 	return -1;
-
 }
 
 

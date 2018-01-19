@@ -20,8 +20,7 @@
 		}
 		novi[k] = '\0';
 		return novi;
-
-	}
+}
 
 	void obradi_racun1(std::string puniNaziv2, std::string puniNaziv) {
 		std::ifstream neobradjeniRacun(puniNaziv2.c_str());
@@ -78,7 +77,7 @@
 			delete[] pom;
 
 		}
-	}
+}
 
 	void obradi_racun2(std::string stari_naziv, std::string novi_naziv) {
 		std::ifstream racun(stari_naziv.c_str());
@@ -125,11 +124,9 @@
 			obradjeni_racun << pom << '\n';
 			delete[] pom;
 		}
-
-	}
+}
 
 	void obradi_racun4(std::string stari_naziv, std::string novi_naziv) {
-
 
 	std::ifstream racun(stari_naziv.c_str());
 	std::ofstream obradjeni_racun(novi_naziv.c_str());
@@ -172,7 +169,7 @@
 	obradjeni_racun << pom << '\n';
 	delete[] pom;
 	}
-	}
+}
 
 
 	void obradi_racun3(std::string stari_naziv, std::string novi_naziv) {
@@ -236,6 +233,6 @@
 	obradjeni_racun << buffer << '\n';
 
 	}
-	}
+}
 
 

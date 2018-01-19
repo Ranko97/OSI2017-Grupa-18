@@ -22,8 +22,7 @@ int dodajNoviNalog(char imeNaloga[20], char pinNaloga[5], int tipNaloga)
 		std::cout << "Doslo je do greske pri upisivanju!" << std::endl;
 		return 0;
 	}
-	return 1;
-	
+	return 1;	
 }
 
 bool upisiNalog(Nalog* nalog)
@@ -56,7 +55,6 @@ bool upisiNalog(Nalog* nalog)
 
 int obrisiNalog(char imeBrisi[20])
 {
-
 	//Osiguravanje da se ne brise svoj nalog
 	std::cout << "Unesite svoje ime da potvrdite!" << std::endl;
 	char imeAdmina[20];
@@ -101,7 +99,6 @@ int obrisiNalog(char imeBrisi[20])
 	std::cout << "Nalog je obrisan!" << std::endl;
 
 	return 1;
-
 }
 
 
@@ -123,13 +120,11 @@ bool podesiValutu()
 	fajl.close();
 	std::cout << "Valuta je promijenjena!" << std::endl;
 	return true;
-
 }
 
 
 std::string vratiValutu()
-{
-	
+{	
 	std::string valuta;
 	std::ifstream fajl;
 	fajl.open("Valuta_sistema");

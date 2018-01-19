@@ -32,7 +32,6 @@ Nalog* citajNalog(char imeNaloga[20])
 	fajl.close();
 
 	return nalog;
-
 }
 
 
@@ -40,8 +39,6 @@ Nalog* citajNalog(char imeNaloga[20])
 
 int imalNaloga(char imeNaloga[20], char pinNaloga[5])
 {
-
-
 
 	Nalog* procitani = citajNalog(imeNaloga);
 
@@ -60,7 +57,6 @@ int imalNaloga(char imeNaloga[20], char pinNaloga[5])
 	int temp = procitani->tipNaloga;
 	delete procitani;
 	return temp;
-
 }
 
 

@@ -66,10 +66,6 @@ void meniZaAdministratora()
 		default:
 			opcija = 111;
 			break;
-
 		}
-
-
 	}
-
 }
