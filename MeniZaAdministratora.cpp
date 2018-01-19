@@ -31,41 +31,54 @@ void meniZaAdministratora()
 		switch (opcija)
 		{
 		case 1: 
-			std::cout << "Dodaj ime novog naloga: " << std::endl;
+			system("cls");
+			std::cout << "Dodaj ime novog naloga: ";
 			std::cin >> ime;
-			std::cout << "Dodaj novi PIN (max 4 znaka): " << std::endl;
+			std::cout << "Dodaj novi PIN (max 4 znaka): ";
 			std::cin >> pin;
 			do {
-				std::cout << "Dodaj tip naloga (1-administrator, 2-analiticar)" << std::endl;
+				std::cout << "Izaberi tip naloga (1-administrator, 2-analiticar): ";
 				std::cin >> tip;
 			} while (tip != 1 && tip != 2);
 			dobro = dodajNoviNalog(ime, pin, tip);
 			if(dobro)
 				std::cout << "Nalog je uspjesno dodan!" << std::endl;
+			system("pause");
+			system("cls");
 			break;
 
 		case 2:
-			std::cout << "Dodaj ime naloga za brisanje: " << std::endl;
+			std::cout << "Dodaj ime naloga za brisanje: ";
 			std::cin >> ime;
 			obrisiNalog(ime);
+			system("pause");
+			system("cls");
 			break;
 
 		case 3:
 			podesiValutu();
+			system("pause");
+			system("cls");
 			break;
 
 		case 4:
 			valuta = vratiValutu();
-			std::cout << "Valuta je: " << std::endl;
+			std::cout << "Valuta je: ";
 			std::cout << valuta << std::endl;
+			system("pause");
+			system("cls");
 			break;
-
 		case 0:
+			system("cls");
 			return;
 
 		default:
 			opcija = 111;
 			break;
+
 		}
+
+
 	}
+
 }

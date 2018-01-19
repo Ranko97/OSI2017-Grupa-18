@@ -47,6 +47,8 @@ while (opcija)
 		std::getline(std::cin, kupac);
 		std::cout << std::endl;
 		filtrirajPoKupcu(kupac);
+		system("pause");
+		system("cls");
 		break;
 
 	case 2:
@@ -62,7 +64,7 @@ while (opcija)
 		} while (godina < 1900 || godina>3000 || std::cin.fail());
 
 		do {
-			std::cout << std::endl << "Unesite redni broj mjeseca: ";
+			std::cout << std::endl << "Unesite mjesec: ";
 			std::cin >> mjesec;
 			if (std::cin.fail())
 			{
@@ -73,22 +75,34 @@ while (opcija)
 
 
 		filtrirajPoMjesecu(godina, mjesec);
+		system("pause");
+		system("cls");
 		break;
 
 	case 4: 
 		sortirajPoPrometu();
+		system("pause");
+		system("cls");
 		break;
 	case 6:
 		ispisUkupnogPoslovanja();
+		system("pause");
+		system("cls");
 		break;
 	case 5:
 		sortirajKlijente();
+		system("pause");
+		system("cls");
 		break;
 	case 7:
 		ispisRacunaGreska();
+		system("pause");
+		system("cls");
 		break;
 	case 8:
 		ispisiPoMjesecima();
+		system("pause");
+		system("cls");
 		break;
 	case 9:
 		std::cout << "Unesite pocetni datum u obliku DD/MM/GGGG: ";
@@ -97,6 +111,8 @@ while (opcija)
 		std::cin >> krajnjiDatum;
 		std::cout << std::endl;
 		obradiRacuneIzIntervala(pocetniDatum, krajnjiDatum);
+		system("pause");
+		system("cls");
 		break;
 	case 3:
 		
@@ -104,16 +120,22 @@ while (opcija)
 		std::getline(std::cin, naziv);
 		std::getline(std::cin, naziv);
 		filtrirajpoArtiklu(naziv);
+		system("pause");
+		system("cls");
 		break;
 
 	case 0:
+		system("cls");
 		return;
 	default:
 		std::cout << "Pogresna opcija! Probajte ponovo!" << std::endl;
+		system("cls");
 		break;
 
-		}
+	}
+
 
 }
+
 
 }

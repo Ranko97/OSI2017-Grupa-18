@@ -16,16 +16,16 @@ void glavniMeni()
 		{
 			Nalog nalog;
 			std::cout << "	==== Prijava na sistem ====" << std::endl << std::endl;
-			std::cout << "Unesite ime vaseg naloga (1 rijec), ili '0' za izlaz: " << std::endl;
+			std::cout << "Unesite ime vaseg naloga, ili '0' za izlaz: ";
 			std::cin >> nalog.imeNaloga;
 			if (strcmp(nalog.imeNaloga, "0") == 0)
 			{
 				komandaIzlaz = true;
 				return;				//Provjera treba li izaci iz sistema
 			}
-			std::cout << "Unesite svoj PIN: " << std::endl;
+			std::cout << "Unesite svoj PIN: ";
 			std::cin >> nalog.pinNaloga;
-
+			std::cout << std::endl;
 
 			tipNaloga = imalNaloga(nalog.imeNaloga, nalog.pinNaloga);
 			brojPokusaja--;
@@ -48,10 +48,12 @@ void glavniMeni()
 		switch (tipNaloga)		//Provjera tipa korisnika
 		{
 		case 1:
+			system("cls");
 			meniZaAdministratora();
 			break;
 
 		case 2:
+			system("cls");
 			meniZaAnaliticara();
 			break;
 
