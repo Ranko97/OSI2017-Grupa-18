@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include "FunkcijeZaObraduRacuna.h"
 #include "UcitavanjeRacuna.h"
+#include <cmath>
 
 vector<string> imena_fajlova_u_folderu(string folder) {
 
@@ -166,7 +167,13 @@ void provjeraRacuna(std::string imeRacuna)
 	racunProvjera >> pdv;
 	racunProvjera >> saPdv;
 	if (ukupno + pdv != saPdv)
+	{
 		ispravan = false;
+		if (abs((ukupno + pdv) - saPdv) < 0.001)
+			ispravan = false;
+
+		//Zbog Floating point preciznosti
+	}
 	//Provjera konzistentnosti
 
 	std::string artikal;
@@ -189,7 +196,11 @@ void provjeraRacuna(std::string imeRacuna)
 		ukupno1 = -ukupno1;
 
 		if (!ispravniPodaci(cijena, kolicina, ukupno1))
+		{
 			ispravan = false;
+			if (abs((cijena*kolicina) - ukupno1) < 0.001)
+				ispravan = true;
+		}//Zbog double preciznosti
 		std::getline(racunProvjera, artikal, '-');
 	}
 	racunProvjera.close();
