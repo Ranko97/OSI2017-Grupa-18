@@ -31,7 +31,7 @@ struct ModifikovanDatum
 	bool operator==(const ModifikovanDatum&)const noexcept;
 	bool operator>(const ModifikovanDatum&)const noexcept;
 };
-
+void obradiRacuneIzIntervala(std::string, std::string);
 int is_exist_datum(ModifikovanDatum*, ModifikovanDatum&, int);
 void ispisiPoMjesecima();
 int brojObradjenihRacuna();

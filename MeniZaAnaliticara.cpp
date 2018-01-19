@@ -3,11 +3,14 @@
 #include <string>
 #include <iostream>
 
+
+
 void meniZaAnaliticara(){
 	ucitavanje_racuna();
 	int opcija = 1;
 	char buffer[100];
 	std::string kupac;
+	std::string pocetniDatum, krajnjiDatum;
 	std::string naziv;
 while (opcija)
 {
@@ -20,11 +23,12 @@ while (opcija)
 	std::cout << "Ispis ukupnog poslovanja preduzeca	- 6 -" << std::endl;
 	std::cout << "Ispis racuna sa greskom	                - 7 -" << std::endl;
 	std::cout << "Pregled poslovanja po mjesecima	        - 8 -" << std::endl;
+	std::cout << "Ukupan profit u odredjenom intervalu	- 9 -" << std::endl;
 	std::cout << "Nazad na meni prijave			- 0 -" << std::endl;
 	std::cout << "Opcija:  ";
 
 	do {
-		opcija = 9; // Da bi provjera ispravno radila
+		opcija = 10; // Da bi provjera ispravno radila
 		std::cin >> opcija;
 		if (std::cin.fail())
 		{
@@ -32,7 +36,7 @@ while (opcija)
 			std::cin.ignore();
 		}
 
-	} while (opcija < 0 || opcija>8 || std::cin.fail()); //Provjera da li je unos dobar
+	} while (opcija < 0 || opcija>9 || std::cin.fail()); //Provjera da li je unos dobar
 
 	std::cout << std::endl << std::endl;
 	switch (opcija)
@@ -85,6 +89,14 @@ while (opcija)
 		break;
 	case 8:
 		ispisiPoMjesecima();
+		break;
+	case 9:
+		std::cout << "Unesite pocetni datum u obliku DD/MM/GGGG: ";
+		std::cin >> pocetniDatum;
+		std::cout << "Unesite krajnji datum u obliku DD/MM/GGGG: ";
+		std::cin >> krajnjiDatum;
+		std::cout << std::endl;
+		obradiRacuneIzIntervala(pocetniDatum, krajnjiDatum);
 		break;
 	case 3:
 		

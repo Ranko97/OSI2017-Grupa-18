@@ -152,7 +152,8 @@ int parseDate(const std::string & input)
 	int day;
 	int year;
 	if (sscanf_s(input.c_str(), "%d/%d/%d", &day, &month, &year) != 3) {
-		// handle error
+		std::cout << "Pogresan format datuma!" << std::endl;
+		return -1;
 	}
 	else {
 		// check values to avoid int overflow if you can be bothered
@@ -547,6 +548,7 @@ bool ModifikovanDatum::operator>(const ModifikovanDatum& other)const noexcept
 }
 
 void sortiraj_i_ispisi(ModifikovanDatum* niz, int n) {
+	//Sortira i ispisuje datume po prometu
 	ModifikovanDatum pom;
 	for (int i = 0; i < n - 1; i++)
 	{
@@ -567,7 +569,7 @@ void sortiraj_i_ispisi(ModifikovanDatum* niz, int n) {
 }
 
 int is_exist_datum(ModifikovanDatum* niz, ModifikovanDatum& a, int brojRazlicitihDatuma)
-{
+{	
 	for (int i = 0; i < brojRazlicitihDatuma; i++)
 		if (niz[i] == a)
 			return i;
@@ -576,6 +578,10 @@ int is_exist_datum(ModifikovanDatum* niz, ModifikovanDatum& a, int brojRazliciti
 
 void ispisiPoMjesecima()
 {
+	/*
+	Funkcija koja se aktivira odabirom opcije 8 iz menija analiticara.
+	Ispisuje ukupan profit za sve  
+	*/
 	int brojRacuna = brojObradjenihRacuna();
 	int brojRazlicitihDatuma = 0;
 	if (brojRacuna == 0)return;
@@ -605,4 +611,47 @@ void ispisiPoMjesecima()
 	}
 	sortiraj_i_ispisi(niz, brojRazlicitihDatuma);
 	delete[] niz;
+}
+
+void obradiRacuneIzIntervala(std::string pocetniDatum, std::string krajnjiDatum)
+{
+	int datum1 = parseDate(pocetniDatum);
+	int datum2 = parseDate(krajnjiDatum);
+	int datumRacuna;
+	double ukupno = 0;
+	char buffer[30];
+	double ukupnoIzRacuna;
+	int brojRacuna = brojObradjenihRacuna();
+	if (brojRacuna == 0)return;
+	int brojac = 0;
+	std::ifstream racun;
+	std::string naziv_racuna;
+	for (int i = 1; i <= brojRacuna; ++i)
+	{
+		naziv_racuna = "obradjeni racuni/" + std::to_string(i) + ".txt";
+		racun.open(naziv_racuna.c_str());
+		racun.getline(buffer, 30);
+		racun.getline(buffer, 30);
+		datumRacuna = parseDate(buffer);
+		if (datum1 <= datumRacuna&&datumRacuna <= datum2)
+		{	
+			brojac++;
+			racun.getline(buffer, 30);
+			racun.getline(buffer, 30);
+			racun >> ukupnoIzRacuna;
+			ukupno += ukupnoIzRacuna;
+			racun.close();
+			std::cout << brojac << ". racun u ovom intervalu: " << std::endl;
+			ispisi_racun(naziv_racuna);
+			std::cout << std::endl;
+		}
+		if (racun.is_open())
+			racun.close();
+	}
+	if (!brojac) {
+		std::cout << "U sistemu nema racuna u ovom intervalu!" << std::endl;
+		return;
+	}
+	std::cout << std::endl << "Ukupno je obradjeno " << brojac << " racuna u ovom intervalu."<<std::endl<<"Ukupan profit nad ovim racunima je: " << ukupno << vratiValutu()<<std::endl;
+
 }
