@@ -187,7 +187,7 @@ void provjeraRacuna(std::string imeRacuna)
 	double kolicina = 0, cijena = 0, ukupno1 = 0;
 
 	std::getline(racunProvjera, artikal, '-');
-	while (artikal != "\n")
+	while (artikal != "\n" && ispravan==true)
 	{
 		racunProvjera >> kolicina;
 		racunProvjera >> cijena;
