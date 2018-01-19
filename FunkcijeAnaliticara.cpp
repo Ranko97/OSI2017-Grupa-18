@@ -77,7 +77,7 @@ void ispisi_racun(std::string nazivRacuna) {
 	*/
 	std::ifstream fajl(nazivRacuna.c_str());
 	if (!fajl.is_open()) {
-		std::cout <<std::endl<< "Fajl za ispis ne postoji ili je doslo do greske pri otvaranju " << std::endl;
+		std::cout <<std::endl<< "Fajl za ispis ne postoji ili je doslo do greske pri otvaranju. " << std::endl;
 		return;
 	}
 	//Dodata valuta sistema
@@ -505,7 +505,7 @@ void filtrirajpoArtiklu(std::string naziv)
 				prvi.cijena = drugi.cijena;
 				prvi.kolicina += drugi.kolicina;
 				prvi.ukupno += drugi.ukupno;
-				std::cout << std::endl<< "Podaci o racunu " << brojac << ". u kom se artikal nalazi:" << std::endl;
+				std::cout << std::endl<< "Podaci o " << brojac << ". racunu u kom se artikal nalazi:" << std::endl;
 				std::cout << "Naziv kupca: " << nazivv << std::endl;
 				std::cout << "Datum izavanja racuna: " << datum << std::endl;
 				std::cout << "Artikal:    "<<std::endl;
@@ -518,7 +518,7 @@ void filtrirajpoArtiklu(std::string naziv)
 		RacunUObradi.close();
 	}
 	
-	std::cout <<std::endl << std::endl << "Ukupno se artikal nalazi u " << brojac << " racuna" << std::endl;
+	std::cout <<std::endl << std::endl << "Ukupno se artikal nalazi u " << brojac << " racuna." << std::endl;
 	std::cout << "Ukupno je prodano " << prvi.kolicina << " komada." << std::endl;
 	std::cout << "Ukupna vrijednost prometa sa ovim artiklom je: " << prvi.ukupno << vratiValutu() << std::endl;
 }
@@ -557,7 +557,7 @@ void sortiraj_i_ispisi(ModifikovanDatum* niz, int n) {
 	}
 	std::cout << std::endl << "Pregled ukupne vrijednosti robe prodate u pojedinacnim mjesecima" << std::endl;
 	for(int i=0;i<n;i++)
-		std::cout << "U " << niz[i].mjesec << ". mjesecu " << niz[i].godina << ". godine prodata je roba u vrijednosti " << niz[i].ukupno << vratiValutu() << " ." << std::endl;
+		std::cout << "U " << niz[i].mjesec << ". mjesecu " << niz[i].godina << ". godine prodata je roba u vrijednosti " << niz[i].ukupno << vratiValutu() << "." << std::endl;
 	std::cout << std::endl;
 }
 
