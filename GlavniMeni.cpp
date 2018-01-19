@@ -16,7 +16,7 @@ void glavniMeni()
 		{
 			Nalog nalog;
 			std::cout << "	==== Prijava na sistem ====" << std::endl << std::endl;
-			std::cout << "Unesite ime vaseg naloga, ili '0' za izlaz: ";
+			std::cout << "Unesite ime vaseg naloga (1 rijec), ili '0' za izlaz: ";
 			std::cin >> nalog.imeNaloga;
 			if (strcmp(nalog.imeNaloga, "0") == 0)
 			{

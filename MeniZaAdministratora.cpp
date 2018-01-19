@@ -32,7 +32,7 @@ void meniZaAdministratora()
 		{
 		case 1: 
 			system("cls");
-			std::cout << "Dodaj ime novog naloga: ";
+			std::cout << "Dodaj ime novog naloga (1 rijec): ";
 			std::cin >> ime;
 			std::cout << "Dodaj novi PIN (max 4 znaka): ";
 			std::cin >> pin;
@@ -77,7 +77,6 @@ void meniZaAdministratora()
 			break;
 
 		}
-
 
 	}
 

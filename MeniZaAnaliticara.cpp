@@ -12,6 +12,7 @@ void meniZaAnaliticara(){
 	std::string kupac;
 	std::string pocetniDatum, krajnjiDatum;
 	std::string naziv;
+
 while (opcija)
 {
 	std::cout << std::endl << "	==== Meni za analiticara ====" << std::endl << std::endl;
@@ -64,7 +65,7 @@ while (opcija)
 		} while (godina < 1900 || godina>3000 || std::cin.fail());
 
 		do {
-			std::cout << std::endl << "Unesite mjesec: ";
+			std::cout << std::endl << "Unesite redni broj mjeseca: ";
 			std::cin >> mjesec;
 			if (std::cin.fail())
 			{
@@ -133,7 +134,6 @@ while (opcija)
 		break;
 
 	}
-
 
 }
 
