@@ -122,7 +122,8 @@ int provjeraMjeseca(std::string nazivFajla, int godina, int mjesec)
 	ObradjenRacun racun;
 	std::ifstream obradjenR(nazivFajla);
 
-	obradjenR >> racun.kupac;
+	char imeKupca[30];
+	obradjenR.getline(imeKupca,30);
 	obradjenR >> racun.datum;
 	obradjenR >> racun.ukupno;
 	obradjenR >> racun.pdv;
@@ -136,9 +137,10 @@ int provjeraMjeseca(std::string nazivFajla, int godina, int mjesec)
 	mjesecS = datum / 100;
 	mjesecS %= 100;
 
+	obradjenR.close();
 	if (godina != godinaS || mjesec != mjesecS)
 		return 0;
-	obradjenR.close();
+	
 	ispisi_racun(nazivFajla);
 	return 1;
 }
