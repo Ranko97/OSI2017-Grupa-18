@@ -136,7 +136,7 @@ int provjeraMjeseca(std::string nazivFajla, int godina, int mjesec)
 	int datum = parseDate(racun.datum);
 
 	godinaS = datum / 10000;
-	mjesecS = datum % 10000;
+	mjesecS = datum / 100;
 	mjesecS %= 100;
 
 	if (godina != godinaS || mjesec != mjesecS)
@@ -148,6 +148,7 @@ int provjeraMjeseca(std::string nazivFajla, int godina, int mjesec)
 
 int parseDate(const std::string & input)
 {
+	//Funkcija koja uzima datum kao string a vraca ga kao int
 	int month;
 	int day;
 	int year;
