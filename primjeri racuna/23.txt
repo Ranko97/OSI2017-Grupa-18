@@ -1,0 +1,18 @@
+eKnjigovodja
+Poslovnica: ETF
+
+	Maloprodajni racun
+
+Kupac: NekaFirma d.o.o.
+
+Proizvod - kolicina - cijena - ukupno
+---------------------------------------
+voda  -    100    -    0.7   -   70
+cokolada  -    20    -   2.8   -   56
+kalendar  -    8    -   4   -   32
+---------------------------------------
+
+Ukupno: 158 
+PDV: 26.86
+Ukupno za placanje: 184.86 
+Datum: 03/03/2017

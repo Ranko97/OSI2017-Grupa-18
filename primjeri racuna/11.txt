@@ -1,0 +1,14 @@
+Kupac: Nikola Dzombic
+Datum: 13/02/2017
+
+	       Racun
+
+Proizvod - kolicina - cijena - ukupno
+cetkica za zube  -    2    -    4.5   -   9
+mlijeko  -    3    -   1.5   -   4.5
+banane  -    1.3    -   1.2   -   1.56
+plazma  -    2    -   2   -   4
+---------------------------------------
+Ukupno: 19.06
+PDV: 3.24
+Ukupno za placanje: 22.3

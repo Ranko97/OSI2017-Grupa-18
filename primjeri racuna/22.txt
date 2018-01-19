@@ -1,0 +1,18 @@
+eKnjigovodja
+Poslovnica: ETF
+
+	Maloprodajni racun
+
+Kupac: Nikola Dzombic
+
+Proizvod - kolicina - cijena - ukupno
+---------------------------------------
+bijelo meso  -    2    -    6.5   -   13
+mlijeko  -    3    -   1.6   -   4.8
+banane  -    1    -   1.4   -   1.4
+---------------------------------------
+
+Ukupno: 19.2 
+PDV: 3.26
+Ukupno za placanje: 22.46 
+Datum: 22/01/2017

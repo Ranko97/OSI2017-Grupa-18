@@ -1,0 +1,16 @@
+eKnjigovodja
+Poslovnica: ETF
+Kupac: Marko markovic
+Datum: 13/10/2016
+
+	Maloprodajni racun
+
+Proizvod  Kolicina  Cijena  Ukupno
+----------------------------------
+zvake ======1======1.1======2.1
+voda ======1======0.7======0.7
+----------------------------------
+
+Ukupno: 2.8		PDV: 0.48
+
+Ukupno za placanje: 3.55 	

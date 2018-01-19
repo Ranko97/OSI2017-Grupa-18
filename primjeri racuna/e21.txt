@@ -1,0 +1,17 @@
+eKnjigovodja
+Poslovnica: ETF
+
+	Maloprodajni racun
+
+Kupac: Petar Petrovic
+
+Proizvod - kolicina - cijena - ukupno
+---------------------------------------
+orbit zvake  -    2    -    1   -   5
+dopuna  -    1    -   5   -   5
+---------------------------------------
+
+Ukupno: 10 
+PDV: 1.7
+Ukupno za placanje: 11.7 
+Datum: 13/04/2015

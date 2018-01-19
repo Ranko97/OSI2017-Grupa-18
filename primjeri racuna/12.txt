@@ -1,0 +1,13 @@
+Kupac: NekaFirma d.o.o.
+Datum: 23/11/2016
+
+	       Racun
+
+Proizvod - kolicina - cijena - ukupno
+hemijska olovka  -    50    -    1   -   50
+rokovnik  -    30    -   5.5   -   165
+monitor -    2    -   85   -   170
+---------------------------------------
+Ukupno: 385
+PDV: 65.45
+Ukupno za placanje: 450.45 

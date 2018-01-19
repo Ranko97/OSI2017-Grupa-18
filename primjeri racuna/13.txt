@@ -1,0 +1,13 @@
+Kupac: Nikola Dzombic
+Datum: 09/02/2017
+
+	       Racun
+
+Proizvod - kolicina - cijena - ukupno
+kikiriki  -    2    -    2.5   -   5
+jogurt  -    3    -   2   -   6
+banane  -    2    -   2.3   -   4.6
+---------------------------------------
+Ukupno: 15.6
+PDV: 2.65
+Ukupno za placanje: 18.25 

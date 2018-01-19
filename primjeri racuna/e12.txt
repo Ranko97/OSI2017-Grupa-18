@@ -1,0 +1,13 @@
+Kupac: Jovan Jovanovic
+Datum: 15/11/2016
+
+	       Racun
+
+Proizvod - kolicina - cijena - ukupno
+smoki  -    10    -    0.75   -   7.5
+cips  -    4    -   2.5   -   10
+cokolada   -    4    -   1.5   -   6
+---------------------------------------
+Ukupno: 23.5
+PDV: 4
+Ukupno za placanje: 29 

@@ -1,0 +1,18 @@
+Kupac: Jovan Jovanovic
+Datum: 06/05/2015
+		
+	      eKnjigovodja
+
+Proizvod - kolicina - cijena - ukupno
+---------------------------------------
+gumene bombone  -    1    -    2.9   -   2.9
+cips  -    2    -   2.1   -   4.2
+stapici  -    1    -   0.6   -   0.6
+coca cola  -    2    -   2.4   -   4.8
+---------------------------------------
+Ukupno: 12.5
+PDV: 2.12
+=======================================
+Ukupno za placanje: 14.62 
+
+=======================================

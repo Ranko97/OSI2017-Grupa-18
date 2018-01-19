@@ -1,0 +1,16 @@
+Kupac: Nikola Nikolic
+Datum: 24/10/2017
+		
+	      eKnjigovodja
+
+Proizvod - kolicina - cijena - ukupno
+---------------------------------------
+mikrofon  -    1    -    8   -   8
+kamera  -    1    -   18   -   18
+---------------------------------------
+Ukupno: 26
+PDV: 4.42
+=======================================
+Ukupno za placanje: 40.42 
+
+=======================================

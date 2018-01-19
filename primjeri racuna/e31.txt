@@ -1,0 +1,19 @@
+eKnjigovodja
+Poslovnica: ETF
+Kupac: Petar Petrovic
+Datum: 07/08/2015
+
+	Maloprodajni racun
+
+Proizvod  Kolicina  Cijena  Ukupno
+----------------------------------
+cips ======2======1.6======3.2
+zvake ======1======1.1======1.1
+kikiriki ======3======2======6
+coca cola ======4======1.1======4.4
+fanta ======4======1======4
+----------------------------------
+
+Ukupno: 18.7		PDV: 3.18
+
+Ukupno za placanje: 25.5 	

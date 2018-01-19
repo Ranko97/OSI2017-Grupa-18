@@ -1,0 +1,16 @@
+Kupac: Nikola Dzombic
+Datum: 24/03/2016
+		
+	      eKnjigovodja
+
+Proizvod - kolicina - cijena - ukupno
+---------------------------------------
+mlijeko  -    1    -    1.8   -   1.8
+plazma  -    1    -   3.2   -   3.2
+---------------------------------------
+Ukupno: 5
+PDV: 0.85
+=======================================
+Ukupno za placanje: 5.85 
+
+=======================================

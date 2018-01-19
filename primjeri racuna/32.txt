@@ -1,0 +1,19 @@
+eKnjigovodja
+Poslovnica: ETF
+Kupac: Ivana Ivanovic
+Datum: 03/03/2017
+
+	Maloprodajni racun
+
+Proizvod  Kolicina  Cijena  Ukupno
+----------------------------------
+maramice ======3======0.6======1.8
+zvake ======1======1.1======1.1
+dopuna ======1======10======10
+keks ======1======2.4======2.4
+voda ======1======0.7======0.7
+----------------------------------
+
+Ukupno: 16		PDV: 2.72
+
+Ukupno za placanje: 18.72 	

@@ -1,0 +1,12 @@
+Kupac: Marko Markovic
+Datum: 10/11/2017
+
+	       Racun
+
+Proizvod - kolicina - cijena - ukupno
+jabuke  -    4.3    -    1.9   -   50
+cips  -    3    -   2.3  -   6.9
+---------------------------------------
+Ukupno: 56.9
+PDV: 9.67
+Ukupno za placanje: 66.57 
