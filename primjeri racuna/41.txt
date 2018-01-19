@@ -8,7 +8,7 @@ Proizvod - kolicina - cijena - ukupno
 sir  -    0.5    -    4   -   2
 kajmak  -    0.5    -   7.4   -   3.7
 meso  -    2.5    -   12   -   30
-hljeb  -    3    -   1   -   2
+hljeb  -    2    -   1   -   2
 ---------------------------------------
 Ukupno: 37.7
 PDV: 6.41
