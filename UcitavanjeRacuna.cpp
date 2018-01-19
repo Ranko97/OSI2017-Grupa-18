@@ -170,7 +170,7 @@ void provjeraRacuna(std::string imeRacuna)
 	{
 		ispravan = false;
 		if (abs((ukupno + pdv) - saPdv) < 0.001)
-			ispravan = false;
+			ispravan = true;
 
 		//Zbog Floating point preciznosti
 	}
