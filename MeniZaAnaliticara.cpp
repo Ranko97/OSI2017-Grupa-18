@@ -19,6 +19,7 @@ while (opcija)
 	std::cout << "Sortiranje klijenata po prometu	        - 5 -" << std::endl;
 	std::cout << "Ispis ukupnog poslovanja preduzeca	- 6 -" << std::endl;
 	std::cout << "Ispis racuna sa greskom	                - 7 -" << std::endl;
+	std::cout << "Pregled poslovanja po mjesecima	        - 8 -" << std::endl;
 	std::cout << "Nazad na meni prijave			- 0 -" << std::endl;
 	std::cout << "Opcija:  ";
 
@@ -38,7 +39,8 @@ while (opcija)
 	{
 	case 1:
 		std::cout << std::endl << "Unesite naziv kupca po kom hocete da filtrirate: ";
-		std::cin >> kupac;
+		std::getline(std::cin, kupac);
+		std::getline(std::cin, kupac);
 		std::cout << std::endl;
 		filtrirajPoKupcu(kupac);
 		break;
@@ -81,13 +83,14 @@ while (opcija)
 	case 7:
 		ispisRacunaGreska();
 		break;
+	case 8:
+		ispisiPoMjesecima();
+		break;
 	case 3:
 		
 		std::cout << std::endl << "Unesite naziv artikla po kom hocete da filtrirate: "<<std::endl;
 		std::getline(std::cin, naziv);
 		std::getline(std::cin, naziv);
-
-		
 		filtrirajpoArtiklu(naziv);
 		break;
 

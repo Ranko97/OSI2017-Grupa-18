@@ -4,7 +4,29 @@
 #include <iostream>
 #include "FunkcijeAdministratora.h"
 
+int brojObradjenihRacuna()
+{
+	//funkcija koja vraca broj racuna u folderu obradjeni racuni
+	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
+	if (!brRac.is_open()) {
+		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
+		return 0;
+	}
+	int brojRacuna;
+	brRac >> brojRacuna;
+	brRac.close();
+	if (brojRacuna == 0)
+	{
+		std::cout << "Nema racuna za ispis." << std::endl;
+		return 0;
+	}
+	return brojRacuna;
+}
+
 void ispisi_artikal(const char* buffer) {
+	/*funkcija koja prima neformatiran artikal u formatu
+	naziv-kolicina-cijena-ukupno i formatirano ga ispisuje
+	prelazeci u novi red*/
 	int brojac = 0;
 	int i = 0;
 	while (buffer[i] != '-') {
@@ -12,8 +34,8 @@ void ispisi_artikal(const char* buffer) {
 		brojac++;
 		i++;
 	}
-	if (brojac < 12)
-		for (int j = 0; j < 12 - brojac; j++)
+	if (brojac < 15)
+		for (int j = 0; j < 15 - brojac; j++)
 			std::cout << " ";
 
 	std::cout << buffer[i++];
@@ -25,8 +47,8 @@ void ispisi_artikal(const char* buffer) {
 		i++;
 	}
 	brojac = brojac + 2;
-	if (brojac < 12)
-		for (int j = 0; j < 12 - brojac; j++)
+	if (brojac < 15)
+		for (int j = 0; j < 15 - brojac; j++)
 			std::cout << " ";
 	std::cout << buffer[i++];
 	brojac = 0;
@@ -37,8 +59,8 @@ void ispisi_artikal(const char* buffer) {
 		i++;
 	}
 	brojac = brojac + 2;
-	if (brojac < 10)
-		for (int j = 0; j < 10-brojac; j++)
+	if (brojac < 15)
+		for (int j = 0; j < 15 -brojac; j++)
 			std::cout << " ";
 	std::cout << buffer[i++];
 	std::cout << "  ";
@@ -52,6 +74,9 @@ void ispisi_artikal(const char* buffer) {
 }
 
 void ispisi_racun(std::string nazivRacuna) {
+	/*Funkcija koja prima naziv racuna i ako on postoji ispisuje ga 
+	pozivajuci funckiju za ispisivanje artikla odredjen broj puta.
+	*/
 	std::ifstream fajl(nazivRacuna.c_str());
 	if (!fajl.is_open()) {
 		std::cout <<std::endl<< "Fajl za ispis ne postoji ili je doslo do greske pri otvaranju " << std::endl;
@@ -69,7 +94,7 @@ void ispisi_racun(std::string nazivRacuna) {
 	std::cout << "PDV: " << buffer << vratiValutu() << std::endl;
 	fajl.getline(buffer, 100);
 	std::cout << "Ukupna cijena sa PDVom: " << buffer << vratiValutu() << std::endl;
-	std::cout << "Proizvod    -  kolicina  -  cijena  -  ukupno " << std::endl;
+	std::cout << "Proizvod       -  kolicina     -  cijena       -  ukupno " << std::endl;
 	while (fajl.getline(buffer, 100)) {
 		ispisi_artikal(buffer);
 		
@@ -79,6 +104,7 @@ void ispisi_racun(std::string nazivRacuna) {
 	}
 
 bool provjeriKupca(std::string nazivRacuna, std::string kupac) {
+	//Funkcija koja provjerava da je odredjeni racun naslovljen na odredjenog kupca
 	std::ifstream racun(nazivRacuna.c_str());
 	if (!racun.is_open()) {
 		std::cout << std::endl << "Greska pri otvaranju racuna kod provjere kupca! " << std::endl;
@@ -125,7 +151,7 @@ int parseDate(const std::string & input)
 	int month;
 	int day;
 	int year;
-	if (sscanf_s(input.c_str(), "%d/%d/%d", &month, &day, &year) != 3) {
+	if (sscanf_s(input.c_str(), "%d/%d/%d", &day, &month, &year) != 3) {
 		// handle error
 	}
 	else {
@@ -135,14 +161,11 @@ int parseDate(const std::string & input)
 }
 
 void filtrirajPoKupcu(std::string kupac) {
-	std::ifstream brrac("obradjeni racuni/broj racuna.txt");
-	if (!brrac.is_open()) {
-		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
-		return;
-	}
-	char buffer[50];
-	brrac.getline(buffer, 50);
-	int ukupan_broj_racuna = strtol(buffer, NULL, 10);
+	/*Funkcija koja se aktivira odabirom opcije 1 iz menija analiticara
+	i koja ispisuje sve racune naslovljene na odredjenog kupca pozivajuci funkciju
+	ispisi_racun*/
+	int ukupan_broj_racuna = brojObradjenihRacuna();
+	if (ukupan_broj_racuna == 0)return;
 	std::string direktorijum = "obradjeni racuni/";
 	std::string ekstenzija = ".txt";
 	std::string nazivBrojRacuna;
@@ -163,21 +186,8 @@ void filtrirajPoKupcu(std::string kupac) {
 
 void filtrirajPoMjesecu(int godina, int mjesec)
 {
-	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
-	if (!brRac.is_open()) {
-		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
-		return;
-	}
-	int brojRacuna;
-	brRac >> brojRacuna;
-	brRac.close();
-
-	if (brojRacuna == 0)
-	{
-		std::cout << "Nema racuna za ispis." << std::endl;
-		return;
-	}
-
+	int brojRacuna= brojObradjenihRacuna();
+	if (brojRacuna == 0)return;
 	int barJedan = 0;
 
 	for (int i = 1; i <= brojRacuna; i++)
@@ -196,6 +206,7 @@ void filtrirajPoMjesecu(int godina, int mjesec)
 
 int is_exist(Artikal& a, Artikal* niz, int& broj_artikala)
 {
+	
 	for (int i = 0; i < broj_artikala; i++)
 	{
 		if (a.ime == niz[i].ime)
@@ -206,6 +217,9 @@ int is_exist(Artikal& a, Artikal* niz, int& broj_artikala)
 
 void upisiUArtikal(char* buffer, Artikal& a)
 {
+	/*Funkcija koja prima artikal kao string u obliku naziv-kolicina-cijena-ukupno
+	i upisuje ga na odgovarajuci nacin na proslijedjenu memorijsku lokaciju*/
+
 	char buffer2[20];
 	int brojac = 0;
 	while (buffer[brojac] != '-')
@@ -252,7 +266,7 @@ Artikal* realociraj(Artikal* niz, int& kapacitet)
 }
 
 void obradiArtikal(char*  buffer, Artikal** niz, int& kapacitet, int& broj_artikala)
-{
+{  //obradjuje jedan artikal proslijedjen kao string(char* buffer) 
 	Artikal a;
 	upisiUArtikal(buffer, a);
  	int indeks = is_exist(a, *niz, broj_artikala);
@@ -270,7 +284,7 @@ void obradiArtikal(char*  buffer, Artikal** niz, int& kapacitet, int& broj_artik
 	}
 
 void sortiraj(Artikal* niz, int broj_artikala)
-{
+{	//Sortira artikle po ukupnoj zaradi nad njima
 	Artikal pom;
 	for (int i = 0; i < broj_artikala - 1; i++)
 	{
@@ -287,9 +301,9 @@ void sortiraj(Artikal* niz, int broj_artikala)
 }
 
 void ispisi_artikle(Artikal* niz, int broj_artikala)
-{
-	std::cout << std::endl<< "    Ispis artikala sortiranih po prometu:    " << std::endl;
-	std::cout << "Naziv      Kolicina         Cijena        Ukupno" << std::endl;
+{   //Ispisuje sve artikle u dinamickom nizu istih
+	std::cout << std::endl << "    Ispis artikala sortiranih po prometu:    " << std::endl;
+	std::cout << "Naziv             Kolicina        Cijena          Ukupno" << std::endl;
 	std::string art;
 	Artikal a;
 	for (int i = 0; i < broj_artikala; i++)
@@ -302,22 +316,13 @@ void ispisi_artikle(Artikal* niz, int broj_artikala)
 }
 
 void sortirajPoPrometu()
-{
+{	/*Funkcija koja se aktivira odabirom opcije 4 iz menija analiticara
+	Sortira i ispisuje sve artikle po ukupnoj zaradi nad njima pozivajuci
+	funkcije obradiArtikal,sortiraj i ispisi_artikle
+	*/
 	char buffer[50];
-	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
-	if (!brRac.is_open()) {
-		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
-		return;
-	}
-	int brojRacuna;
-	brRac >> brojRacuna;
-	brRac.close();
-
-	if (brojRacuna == 0)
-	{
-		std::cout << "Nema racuna za ispis." << std::endl;
-		return;
-	}
+	int brojRacuna= brojObradjenihRacuna();
+	if (brojRacuna == 0)return;
 	std::ifstream RacunUObradi;
 	int n = 50;
 	int broj_artikala = 0;
@@ -341,23 +346,15 @@ void sortirajPoPrometu()
 }
 
 void ispisUkupnogPoslovanja(){
+	/*
+	Aktivira se odabirom opcije 6 iz menija analiticara i 
+	ispisuje ukupno zaradjen profit preduzeca 
+	*/
 	double ukupnoPoslovanje = 0;
 	double pom;
 	char buffer[50];
-	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
-	if (!brRac.is_open()) {
-		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
-		return;
-	}
-	int brojRacuna;
-	brRac >> brojRacuna;
-	brRac.close();
-
-	if (brojRacuna == 0)
-	{
-		std::cout << "Nema racuna za ispis." << std::endl;
-		return;
-	}
+	int brojRacuna= brojObradjenihRacuna();
+	if (brojRacuna == 0)return;
 	std::ifstream RacunUObradi;
 	std::string imeFajla;
 	for (int i = 1; i <= brojRacuna; i++)
@@ -396,7 +393,7 @@ int is_exist_kupac(Kupac* niz,std::string& ime, int& broj_kupaca)
 }
 
 void sortiraj_i_ispisi(Kupac* niz,int broj_kupaca)
-{
+{//Sortira i ispisuje kupce po ukupnoj zaradi nad njima
 	Kupac pom;
 	for (int i = 0; i < broj_kupaca - 1; i++)
 	{
@@ -428,19 +425,8 @@ void sortiraj_i_ispisi(Kupac* niz,int broj_kupaca)
 
 void sortirajKlijente()
 {
-	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
-	if (!brRac.is_open()) {
-		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
-		return;
-	}
-	int brojRacuna;
-	brRac >> brojRacuna;
-	brRac.close();
-	if (brojRacuna == 0)
-	{
-		std::cout << "Nema racuna za ispis." << std::endl;
-		return;
-	}
+	int brojRacuna = brojObradjenihRacuna();
+	if (brojRacuna == 0)return;
 	Kupac* niz = new Kupac[brojRacuna];
 	std::ifstream RacunUObradi;
 	std::string imeFajla;
@@ -493,19 +479,8 @@ void ispisRacunaGreska()
 
 void filtrirajpoArtiklu(std::string naziv)
 {
-	std::ifstream brRac("obradjeni racuni/broj racuna.txt");
-	if (!brRac.is_open()) {
-		std::cout << std::endl << "Greska pri otvaranju fajla sa brojem racuna! " << std::endl;
-		return;
-	}
-	int brojRacuna;
-	brRac >> brojRacuna;
-	brRac.close();
-	if (brojRacuna == 0)
-	{
-		std::cout << "Nema racuna za ispis." << std::endl;
-		return;
-	}
+	int brojRacuna = brojObradjenihRacuna();
+	if (brojRacuna == 0)return;
 	std::ifstream RacunUObradi;
 	std::string imeFajla;
 	Artikal prvi;
@@ -537,10 +512,10 @@ void filtrirajpoArtiklu(std::string naziv)
 				prvi.kolicina += drugi.kolicina;
 				prvi.ukupno += drugi.ukupno;
 				std::cout << std::endl<< "Podaci o racunu " << brojac << ". u kom se artikal nalazi:" << std::endl;
-				std::cout << " Naziv kupca: " << nazivv << std::endl;
+				std::cout << "Naziv kupca: " << nazivv << std::endl;
 				std::cout << "Datum izavanja racuna: " << datum << std::endl;
 				std::cout << "Artikal:    "<<std::endl;
-				std::cout << "Proizvod    -  kolicina  -  cijena  -  ukupno " << std::endl;
+				std::cout << "Proizvod       -  kolicina     -  cijena       -  ukupno " << std::endl;
 				ispisi_artikal(buffer);
 				std::cout << std::endl;
 			}
@@ -552,4 +527,82 @@ void filtrirajpoArtiklu(std::string naziv)
 	std::cout <<std::endl << std::endl << "Ukupno se artikal nalazi u " << brojac << ". racuna" << std::endl;
 	std::cout << "Ukupno je prodano " << prvi.kolicina << " komada." << std::endl;
 	std::cout << "Ukupna vrijednost prometa sa ovim artiklom je: " << prvi.ukupno << vratiValutu() << std::endl;
+}
+
+ModifikovanDatum::ModifikovanDatum():ukupno(0){}
+
+bool ModifikovanDatum::operator==(const ModifikovanDatum& other)const noexcept
+{
+	if (mjesec == other.mjesec&&godina == other.godina)
+		return true;
+	return false;
+}
+
+bool ModifikovanDatum::operator>(const ModifikovanDatum& other)const noexcept
+{
+	if (godina > other.godina || (godina == other.godina&&mjesec > other.mjesec))
+		return true;
+	else
+		return false;
+}
+
+void sortiraj_i_ispisi(ModifikovanDatum* niz, int n) {
+	ModifikovanDatum pom;
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (niz[i]>niz[j])
+			{
+				pom = niz[j];
+				niz[j] = niz[i];
+				niz[i] = pom;
+			}
+		}
+	}
+	std::cout << std::endl << "Pregled ukupnog profita ostvarenog u pojedinacnim mjesecima" << std::endl;
+	for(int i=0;i<n;i++)
+		std::cout << "U mjesecu " << niz[i].mjesec << ". godine " << niz[i].godina << " ostvareno je ukupno " << niz[i].ukupno << vratiValutu() << " profita." << std::endl;
+	std::cout << std::endl;
+}
+
+int is_exist_datum(ModifikovanDatum* niz, ModifikovanDatum& a, int brojRazlicitihDatuma)
+{
+	for (int i = 0; i < brojRazlicitihDatuma; i++)
+		if (niz[i] == a)
+			return i;
+	return -1;
+}
+
+void ispisiPoMjesecima()
+{
+	int brojRacuna = brojObradjenihRacuna();
+	int brojRazlicitihDatuma = 0;
+	if (brojRacuna == 0)return;
+	std::ifstream RacunUObradi;
+	std::string nazivRacuna;
+	ModifikovanDatum* niz = new ModifikovanDatum[brojRacuna];
+    char buffer[30];
+	int trash;
+	int indeks;
+	ModifikovanDatum a;
+	for (int i = 1; i <= brojRacuna; ++i)
+	{
+		nazivRacuna = "obradjeni racuni/" + std::to_string(i) + ".txt";
+		RacunUObradi.open(nazivRacuna.c_str());
+		RacunUObradi.getline(buffer, 30);
+		RacunUObradi.getline(buffer, 30);
+		sscanf_s(buffer, "%d/%d/%d", &trash, &a.mjesec, &a.godina);
+		RacunUObradi.getline(buffer, 30);
+		RacunUObradi.getline(buffer, 30);
+		RacunUObradi >> a.ukupno;
+		indeks = is_exist_datum(niz, a, brojRazlicitihDatuma);
+		if (indeks != -1)
+			niz[indeks].ukupno += a.ukupno;
+		else
+			niz[brojRazlicitihDatuma++] = a;
+		RacunUObradi.close();
+	}
+	sortiraj_i_ispisi(niz, brojRazlicitihDatuma);
+	delete[] niz;
 }

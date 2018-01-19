@@ -22,10 +22,24 @@ struct Kupac
 	double ukupna_cijena;
 	Kupac();
 };
+
+struct ModifikovanDatum
+{
+	int godina, mjesec;
+	double ukupno;
+	ModifikovanDatum();
+	bool operator==(const ModifikovanDatum&)const noexcept;
+	bool operator>(const ModifikovanDatum&)const noexcept;
+};
+
+int is_exist_datum(ModifikovanDatum*, ModifikovanDatum&, int);
+void ispisiPoMjesecima();
+int brojObradjenihRacuna();
 void filtrirajpoArtiklu(std::string);
 void ispisRacunaGreska();
 void sortirajKlijente();
 void sortiraj_i_ispisi(Kupac*, int);
+void sortiraj_i_ispisi(ModifikovanDatum*, int);
 int is_exist_kupac(Kupac*, std::string&, int&);
 void ispisUkupnogPoslovanja();
 int is_exist(Artikal&, Artikal*, int&);
