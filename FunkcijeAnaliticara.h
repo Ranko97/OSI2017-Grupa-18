@@ -11,7 +11,7 @@ struct ObradjenRacun
 struct Artikal
 {
 	std::string ime;
-	int kolicina;
+	double kolicina;
 	double cijena;
 	double ukupno;
 };

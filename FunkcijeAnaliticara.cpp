@@ -239,7 +239,7 @@ void upisiUArtikal(char* buffer, Artikal& a)
 		buffer2[i++] = buffer[brojac++];
 	}
 	buffer2[i] = '\0';
-	a.kolicina = strtol(buffer2, NULL, 10);
+	a.kolicina = strtold(buffer2, NULL);
 	brojac++;
 	i = 0;
 	while (buffer[brojac] != '-')
